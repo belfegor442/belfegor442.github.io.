@@ -23,8 +23,10 @@ body{
 #cursor{
   width:10px;height:10px;
   background:#e5e7eb;
-  position:fixed;top:0;left:0;
-  pointer-events:none;z-index:9999;
+  position:fixed;
+  top:0;left:0;
+  pointer-events:none;
+  z-index:9999;
   mix-blend-mode:difference;
   transform:translate(-50%,-50%);
 }
@@ -33,28 +35,55 @@ body{
   width:30px;height:30px;
   border:1px solid rgba(255,255,255,0.2);
   border-radius:50%;
-  position:fixed;top:0;left:0;
-  pointer-events:none;z-index:9998;
+  position:fixed;
+  top:0;left:0;
+  pointer-events:none;
+  z-index:9998;
   transform:translate(-50%,-50%);
   transition:left 0.12s ease,top 0.12s ease;
 }
 
 header{
-  display:flex;justify-content:space-between;align-items:center;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   padding:24px 40px;
   border-bottom:1px solid #111827;
 }
 
-.logo{font-size:13px;letter-spacing:5px;color:#cbd5e1;}
+.logo{
+  font-size:13px;
+  letter-spacing:5px;
+  color:#cbd5e1;
+}
 
 nav a{
-  margin-left:20px;text-decoration:none;
-  font-size:12px;letter-spacing:2px;
+  margin-left:20px;
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:2px;
   color:#4b5563;
   cursor:none;
 }
 
-/* resto CSS igual (recortado para no inflar innecesario) */
+.hero{
+  padding:80px 40px;
+}
+
+.project{
+  padding:40px;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 14px;
+  border:1px solid #333;
+  color:#e5e7eb;
+  text-decoration:none;
+}
+
+/* resto igual */
 </style>
 </head>
 
@@ -87,8 +116,8 @@ nav a{
     <h2>Monix</h2>
     <p class="sub">ALL IN ONE SYSTEM SUITE</p>
 
-    <!-- 🔧 FIX PRINCIPAL AQUÍ -->
-    <a class="btn" href="./Apps/Monix.web/index.html">OPEN</a>
+    <!-- FIX REAL PARA GITHUB PAGES -->
+    <a class="btn" href="/Apps/Monix.web/">OPEN</a>
 
   </div>
 
