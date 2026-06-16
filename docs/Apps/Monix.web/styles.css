@@ -1,0 +1,19 @@
+@font-face{
+    font-family:'VHSGothic';
+    src:url('./Fonts/vhs-gothic.ttf');
+}
+
+@font-face{
+    font-family:'Adore64';
+    src:url('./Fonts/Adore64.ttf');
+}
+
+@font-face{
+    font-family:'DOS437';
+    src:url('./Fonts/Perfect DOS VGA 437 Win.ttf');
+}
+
+@font-face{
+    font-family:'CMD';
+    src:url('./Fonts/windows_command_prompt.ttf');
+}
