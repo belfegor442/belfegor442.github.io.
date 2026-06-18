@@ -32,11 +32,12 @@
 body{
   background:var(--bg);
   color:var(--text);
-  font-family:'Share Tech Mono','VHS',monospace;
+  font-family:'Share Tech Mono',monospace;
   overflow-x:hidden;
   cursor:none;
 }
 
+/* CURSOR */
 #cursor{
   width:10px;height:10px;
   background:var(--text);
@@ -44,6 +45,7 @@ body{
   top:0;left:0;
   pointer-events:none;
   z-index:9999;
+  mix-blend-mode:difference;
   transform:translate(-50%,-50%);
 }
 
@@ -59,7 +61,168 @@ body{
   transition:left .12s ease,top .12s ease;
 }
 
-/* resto de tu CSS intacto */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px);
+  background-size:100% 4px;
+  pointer-events:none;
+}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:24px 40px;
+  border-bottom:1px solid var(--border);
+}
+
+.logo{
+  font-size:13px;
+  letter-spacing:5px;
+  color:var(--text);
+}
+
+nav a{
+  margin-left:20px;
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+
+nav a:hover{color:var(--text);}
+
+/* HERO */
+.hero{
+  padding:120px 40px 60px;
+  max-width:900px;
+}
+
+.hero h1{
+  font-size:58px;
+  font-weight:400;
+  line-height:1.05;
+}
+
+.cursor-blink{
+  display:inline-block;
+  width:3px;
+  height:0.85em;
+  background:var(--text);
+  animation:blink .8s step-end infinite;
+}
+
+@keyframes blink{50%{opacity:0;}}
+
+.quote{
+  margin-top:30px;
+  text-align:right;
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* SECTIONS */
+section{padding:80px 40px;}
+
+.label{
+  font-size:10px;
+  letter-spacing:4px;
+  color:var(--muted);
+  margin-bottom:24px;
+}
+
+/* WHO */
+.who p{
+  font-size:16px;
+  color:var(--muted);
+  line-height:2;
+}
+
+.who p:hover{color:var(--text);}
+
+/* PROJECTS */
+.project{
+  margin-top:32px;
+  max-width:680px;
+  padding:28px;
+  border:1px solid var(--border);
+}
+
+.project h2{
+  font-size:40px;
+}
+
+.project .sub{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.btn{
+  display:inline-block;
+  padding:8px 16px;
+  border:1px solid var(--border);
+  color:var(--muted);
+  text-decoration:none;
+  font-size:11px;
+}
+
+.btn:hover{color:var(--text);}
+
+/* STATUS */
+.status{
+  margin-top:20px;
+  font-size:10px;
+  color:var(--muted);
+}
+
+/* TEAM */
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:1px;
+  border:1px solid var(--border);
+}
+
+.member{
+  padding:32px;
+  background:var(--bg);
+}
+
+.member-name{
+  font-size:28px;
+  color:var(--text);
+}
+
+.member-bio{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:16px;
+}
+
+/* CONTACT */
+.contact-link{
+  display:flex;
+  justify-content:space-between;
+  padding:20px 0;
+  border-bottom:1px solid var(--border);
+  text-decoration:none;
+  color:var(--muted);
+}
+
+.contact-link:hover{color:var(--text);}
+
+/* FOOTER */
+footer{
+  padding:40px;
+  border-top:1px solid var(--border);
+  font-size:10px;
+  color:var(--muted);
+  display:flex;
+  justify-content:space-between;
+}
 </style>
 </head>
 
@@ -71,9 +234,9 @@ body{
 <header>
   <div class="logo">WEIRD STUFF</div>
   <nav>
-    <a href="#who">WHO ARE?</a>
+    <a href="#who">WHO</a>
     <a href="#projects">PROJECTS</a>
-    <a href="#team">OUR TEAM</a>
+    <a href="#team">TEAM</a>
     <a href="#contact">CONTACT</a>
   </nav>
 </header>
@@ -84,12 +247,10 @@ body{
 </div>
 
 <section id="who">
-  <div class="label">// WHO ARE?</div>
+  <div class="label">// WHO</div>
   <div class="who">
-    <p>We're Weird Stuff.</p>
     <p>We make software.</p>
-    <p>Sometimes because we need it.</p>
-    <p>Sometimes because we can.</p>
+    <p>Because we can.</p>
   </div>
 </section>
 
@@ -97,143 +258,64 @@ body{
   <div class="label">// PROJECTS</div>
 
   <div class="project">
-    <span class="project-num">01</span>
     <h2>Monix</h2>
-    <p class="sub">ALL IN ONE SYSTEM SUITE</p>
+    <p class="sub">ALL IN ONE SYSTEM</p>
     <a class="btn" href="Apps/Monix.web/index.html">OPEN</a>
-    <button class="btn" id="posterBtn">POSTER</button>
     <div class="status">ACTIVE</div>
-
-    <div id="poster">
-      <div id="poster-inner">
-        <p>Started as a small utility.</p>
-        <p>Then it became something else.</p>
-        <p>Monix is the system that connects everything.</p>
-      </div>
-    </div>
   </div>
 
   <div class="project">
-    <span class="project-num">02</span>
     <h2>Meat</h2>
-    <p class="sub">WORK IN PROGRESS</p>
+    <p class="sub">WIP</p>
     <a class="btn" href="Apps/Meat/index.html">OPEN</a>
-    <div class="status">WIP</div>
+    <div class="status">WORK IN PROGRESS</div>
   </div>
-
 </section>
 
 <section id="team">
-  <div class="label">// OUR TEAM</div>
+  <div class="label">// TEAM</div>
 
   <div class="team-grid">
-
     <div class="member">
-      <span class="member-num">01</span>
-      <div class="member-role">CEO</div>
       <div class="member-name">belfegor442</div>
-      <div class="member-bio">Owner and creator of Weird Stuff.</div>
+      <div class="member-bio">CEO</div>
     </div>
-
-    <div class="member">
-      <span class="member-num">02</span>
-      <div class="member-role">CO-FOUNDER</div>
-      <div class="member-name">AcridCosine6168</div>
-      <div class="member-bio"></div>
-    </div>
-
-    <div class="member">
-      <span class="member-num">03</span>
-      <div class="member-role">DESIGNER</div>
-      <div class="member-name">Anti_TW</div>
-      <div class="member-bio">Long live the empire!</div>
-    </div>
-
   </div>
-</section>
-
-<h2>Special Thanks to:</h2>
-
-<section id="special-thanks">
-  <span class="member-num">01</span>
-  <div class="member-role">My teacher</div>
-  <div class="member-name">MellamoJack</div>
-  <div class="member-bio">Tech teacher, tester of web, Monix and Meat</div>
 </section>
 
 <section id="contact">
   <div class="label">// CONTACT</div>
 
-  <div class="contact-links">
-    <a class="contact-link" href="https://discord.gg/wjG8pEdBTG" target="_blank">
-      DISCORD <span>Server →</span>
-    </a>
-
-    <a class="contact-link" href="mailto:orimuri12yt@gmail.com">
-      EMAIL <span>→</span>
-    </a>
-  </div>
+  <a class="contact-link" href="mailto:test@gmail.com">
+    EMAIL <span>→</span>
+  </a>
 </section>
 
 <footer>
-  <div>
-    <div>WEIRD STUFF</div>
-    <div style="font-size:10px;color:#374151;margin-top:4px;">
-      © 2026 Weird Stuff. All rights reserved.
-    </div>
-  </div>
-
+  <div>WEIRD STUFF</div>
   <span id="ts"></span>
 </footer>
 
 <script>
-const cur=document.getElementById('cursor');
-const trail=document.getElementById('cursor-trail');
+const cur = document.getElementById('cursor');
+const trail = document.getElementById('cursor-trail');
 
-document.addEventListener('mousemove',e=>{
-  cur.style.left=e.clientX+'px';
-  cur.style.top=e.clientY+'px';
+document.addEventListener('mousemove', e=>{
+  cur.style.left = e.clientX+'px';
+  cur.style.top = e.clientY+'px';
 });
 
 setInterval(()=>{
-  trail.style.left=cur.style.left;
-  trail.style.top=cur.style.top;
-},80);
+  trail.style.left = cur.style.left;
+  trail.style.top = cur.style.top;
+},50);
 
-const lines=["We got bored","and we decided","to make these things."];
-const el=document.getElementById('hero-text');
-let li=0,ci=0,text='';
-
-function type(){
-  if(li>=lines.length){
-    el.innerHTML=text;
-    return;
-  }
-
-  if(ci<lines[li].length){
-    text+=lines[li][ci++];
-  }else{
-    text+='<br>';li++;ci=0;
-  }
-
-  el.innerHTML=text;
-  setTimeout(type,50);
-}
-
-setTimeout(type,500);
-
-document.getElementById('posterBtn').onclick=()=>{
-  document.getElementById('poster').classList.toggle('active');
-};
-
-const ts=document.getElementById('ts');
 function tick(){
-  if(ts){
-    ts.textContent=new Date().toLocaleTimeString('es-ES',{hour12:false});
-  }
+  document.getElementById('ts').textContent =
+    new Date().toLocaleTimeString('es-ES',{hour12:false});
 }
-tick();
 setInterval(tick,1000);
+tick();
 </script>
 
 </body>
