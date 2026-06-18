@@ -331,6 +331,10 @@ footer{
   </div>
 
   <span id="ts"></span>
+  <div id="copyright"></div>
+</footer>
+
+  <span id="ts"></span>
 </footer>
 
 
@@ -374,9 +378,11 @@ function tick() {
   document.getElementById('ts').textContent =
     new Date().toLocaleTimeString('es-ES', {hour12:false});
 }
-tick(); setInterval(tick, 1000);
-  document.getElementById("copyright").textContent =
-  `© ${new Date().getFullYear()} Weird Stuff. All rights reserved.`;
+const copyright = document.getElementById("copyright");
+if (copyright) {
+  copyright.textContent =
+    `© ${new Date().getFullYear()} Weird Stuff. All rights reserved.`;
+}
 </script>
 
 </body>
