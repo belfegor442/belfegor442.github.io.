@@ -1,8 +1,14 @@
-
+@font-face {
+    font-family: "EuropeanTeletext";
+    src: url("./EuropeanTeletext.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
 html,
 body {
-    font-family: "EuropeanTeletext.ttf", monospace;
+  font-family: "EuropeanTeletext", monospace;
 }
 
 :root {
@@ -32,7 +38,7 @@ body {
   min-width: 320px;
   background: var(--black);
   color: var(--white);
-  font-family: "Courier New", "Lucida Console", monospace;
+  font-family: "EuropeanTeletext", monospace;
   line-height: 1.35;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -297,25 +303,11 @@ h1 {
   font-weight: 700;
 }
 
-.cyan {
-  color: var(--cyan);
-}
-
-.yellow {
-  color: var(--yellow);
-}
-
-.green {
-  color: var(--green);
-}
-
-.magenta {
-  color: var(--magenta);
-}
-
-.red {
-  color: var(--red);
-}
+.cyan { color: var(--cyan); }
+.yellow { color: var(--yellow); }
+.green { color: var(--green); }
+.magenta { color: var(--magenta); }
+.red { color: var(--red); }
 
 .signal-band,
 .console-band,
@@ -370,27 +362,13 @@ h2 {
   font-weight: 900;
 }
 
-.feature-code.cyan {
-  background: var(--cyan);
-}
-
-.feature-code.yellow {
-  background: var(--yellow);
-}
-
-.feature-code.green {
-  background: var(--green);
-}
+.feature-code.cyan { background: var(--cyan); }
+.feature-code.yellow { background: var(--yellow); }
+.feature-code.green { background: var(--green); }
 
 h3 {
   margin: 0 0 12px;
   font-size: 1.15rem;
-}
-
-.feature-cell p,
-.build-card p {
-  margin: 0;
-  color: var(--white);
 }
 
 .console-band {
@@ -411,11 +389,6 @@ h3 {
   padding: 22px;
 }
 
-.console-wrap .section-heading {
-  margin-right: 0;
-  margin-left: 0;
-}
-
 .prompt-form label {
   display: block;
   margin-bottom: 8px;
@@ -434,7 +407,6 @@ h3 {
   min-height: 44px;
   padding: 8px 12px;
   border: 4px solid var(--white);
-  border-radius: 0;
   background: var(--black);
   color: var(--yellow);
   font: inherit;
@@ -442,20 +414,13 @@ h3 {
   text-transform: uppercase;
 }
 
-.prompt-row input:focus {
-  outline: 4px solid var(--cyan);
-  outline-offset: 2px;
-}
-
 .console-output {
   min-height: 220px;
   margin: 22px 0 0;
   padding: 18px;
-  overflow: auto;
   border: 4px solid var(--blue);
   background: var(--black);
   color: var(--green);
-  font: inherit;
   white-space: pre-wrap;
 }
 
@@ -470,93 +435,10 @@ h3 {
   font-weight: 900;
 }
 
-.build-card .button {
-  margin-top: 20px;
-}
-
-.button[aria-disabled="true"] {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
 .site-footer {
-  position: relative;
-  z-index: 1;
   justify-content: space-between;
-  gap: 16px;
   padding: 20px 5vw;
   border-top: 4px solid var(--yellow);
   background: var(--blue);
   font-weight: 900;
-}
-
-@media (max-width: 860px) {
-  .site-header {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .nav-links {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .header-status {
-    justify-self: start;
-  }
-
-  .hero {
-    min-height: auto;
-    padding-top: 52px;
-  }
-
-  h1 {
-    font-size: 3.4rem;
-    text-shadow:
-      3px 0 0 var(--red),
-      6px 0 0 var(--blue);
-  }
-
-  .hero-lede {
-    font-size: 1.05rem;
-  }
-
-  .feature-grid,
-  .build-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .prompt-row {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 520px) {
-  .site-header,
-  .hero,
-  .signal-band,
-  .console-band,
-  .builds-band,
-  .site-footer {
-    padding-right: 18px;
-    padding-left: 18px;
-  }
-
-  h1 {
-    font-size: 2.7rem;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-  }
-
-  .transmission-header,
-  .site-footer {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .button {
-    width: 100%;
-  }
 }
