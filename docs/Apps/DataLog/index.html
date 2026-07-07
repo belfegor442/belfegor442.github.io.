@@ -1,144 +1,553 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Datalog</title>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+        --bg: #08080d;
+        --surface: #0e0e15;
+        --surface2: #15151f;
+        --border: #1c1c2a;
+        --text: #b8b8c8;
+        --text-bright: #e8e8f0;
+        --text-dim: #55556a;
+        --accent: #5227FF;
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
         margin: 0;
-        font-family: Arial, sans-serif;
-        background: #0f0f14;
-        color: #eaeaea;
+        font-family: 'Inter', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        overflow-x: hidden;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
     }
 
-    header {
-        padding: 80px 20px;
-        text-align: center;
-        background: linear-gradient(135deg, #6d28d9, #111827);
+    /* ─── NAV ─── */
+    nav {
+        position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 20px 48px;
+        background: rgba(8, 8, 13, 0.9);
+        backdrop-filter: blur(10px);
     }
+    nav .logo {
+        font-size: 15px; font-weight: 600; color: var(--text-bright);
+        letter-spacing: 1px; text-transform: uppercase;
+    }
+    nav .links a {
+        color: var(--text-dim); text-decoration: none; font-size: 13px;
+        margin-left: 32px; transition: color 0.2s;
+    }
+    nav .links a:hover { color: var(--text-bright); }
 
-    header h1 {
-        font-size: 48px;
+    /* ─── HERO ─── */
+    .hero {
+        position: relative;
+        width: 100%; height: 100vh;
+        display: flex; align-items: center;
+        overflow: hidden;
+    }
+    .hero #aurora-container {
+        position: absolute; inset: 0;
+        z-index: 0;
+    }
+    .hero-overlay {
+        position: absolute; inset: 0;
+        background:
+            radial-gradient(ellipse 70% 50% at 30% 50%, transparent 10%, var(--bg) 65%),
+            linear-gradient(to right, var(--bg) 0%, transparent 30%),
+            linear-gradient(to bottom, transparent 80%, var(--bg));
+        z-index: 1; pointer-events: none;
+    }
+    .hero-content {
+        position: relative; z-index: 2;
+        max-width: 500px; padding: 0 48px;
+        margin-left: 10%;
+    }
+    .hero-content h1 {
+        font-size: clamp(40px, 5vw, 56px);
+        font-weight: 700; letter-spacing: -1.5px; line-height: 1.1;
+        color: var(--text-bright);
+    }
+    .hero-content p {
+        margin-top: 20px; font-size: 15px; color: var(--text-dim);
+        line-height: 1.75; max-width: 380px;
+    }
+    .hero-cta {
+        margin-top: 36px; display: flex; gap: 10px;
+    }
+    .btn {
+        padding: 10px 24px; border-radius: 4px;
+        font-size: 13px; font-weight: 500; cursor: pointer;
+        font-family: inherit; transition: all 0.15s;
+        border: 1px solid transparent;
+    }
+    .btn-filled {
+        background: var(--accent); color: #fff; border-color: var(--accent);
+    }
+    .btn-filled:hover { background: #4420dd; }
+    .btn-outline {
+        background: transparent; color: var(--text-dim); border-color: var(--border);
+    }
+    .btn-outline:hover { color: var(--text-bright); border-color: var(--text-dim); }
+
+    /* ─── CONTENT ─── */
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 48px; }
+
+    .divider {
+        border: none; border-top: 1px solid var(--border);
         margin: 0;
     }
 
-    header p {
-        font-size: 18px;
-        opacity: 0.8;
+    /* ─── BLOQUE: QUE HACEMOS ─── */
+    .block { padding: 100px 0; }
+    .block h2 {
+        font-size: 28px; font-weight: 700; letter-spacing: -0.5px;
+        color: var(--text-bright); margin-bottom: 32px; line-height: 1.3;
     }
-
-    .btn {
-        margin-top: 20px;
-        padding: 12px 24px;
-        background: #6d28d9;
-        border: none;
-        color: white;
-        cursor: pointer;
-        border-radius: 8px;
-    }
-
-    section {
-        padding: 60px 20px;
-        max-width: 1000px;
-        margin: auto;
-    }
-
-    h2 {
-        color: #a78bfa;
-        margin-bottom: 20px;
-    }
-
-    .grid {
+    .cols {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+    }
+    .cols p {
+        font-size: 14px; color: var(--text-dim); line-height: 1.8;
+    }
+    .cols p + p { margin-top: 16px; }
+    .cols .highlight {
+        color: var(--text);
+        font-weight: 500;
     }
 
-    .card {
-        background: #1a1a23;
-        padding: 20px;
-        border-radius: 12px;
-        border: 1px solid #2a2a3a;
+    /* ─── BLOQUE: LISTA ─── */
+    .list-block { padding: 100px 0; }
+    .list-block h2 {
+        font-size: 28px; font-weight: 700; letter-spacing: -0.5px;
+        color: var(--text-bright); margin-bottom: 40px;
+    }
+    .item-list {
+        list-style: none;
+    }
+    .item-list li {
+        padding: 24px 0;
+        border-bottom: 1px solid var(--border);
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        gap: 24px;
+        align-items: start;
+    }
+    .item-list li:first-child { border-top: 1px solid var(--border); }
+    .item-num {
+        font-size: 12px; color: var(--text-dim); padding-top: 3px;
+        font-variant-numeric: tabular-nums;
+    }
+    .item-list h3 {
+        font-size: 15px; font-weight: 600; color: var(--text-bright);
+        margin-bottom: 6px;
+    }
+    .item-list p {
+        font-size: 14px; color: var(--text-dim); line-height: 1.7;
+        max-width: 480px;
     }
 
-    .editor {
-        background: #12121a;
-        padding: 20px;
-        border-radius: 12px;
-        border: 1px solid #2a2a3a;
-        font-family: monospace;
-        min-height: 150px;
+    /* ─── BLOQUE: CODIGO ─── */
+    .code-block { padding: 100px 0; }
+    .code-block h2 {
+        font-size: 28px; font-weight: 700; letter-spacing: -0.5px;
+        color: var(--text-bright); margin-bottom: 12px;
     }
+    .code-block > p {
+        font-size: 14px; color: var(--text-dim); margin-bottom: 32px;
+    }
+    .code-window {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .code-bar {
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+        display: flex; align-items: center; gap: 8px;
+    }
+    .code-dot {
+        width: 8px; height: 8px; border-radius: 50%;
+        background: var(--border);
+    }
+    .code-bar span {
+        font-size: 11px; color: var(--text-dim); margin-left: 12px;
+    }
+    .code-body {
+        padding: 24px;
+        font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+        font-size: 13px; line-height: 2;
+        color: var(--text-dim);
+    }
+    .code-body:focus { outline: none; }
+    .code-body .k { color: #a78bfa; }
+    .code-body .s { color: #6ee7b7; }
+    .code-body .n { color: var(--text-bright); }
+    .code-body .c { color: #333348; }
 
+    /* ─── FOOTER ─── */
     footer {
-        text-align: center;
-        padding: 30px;
-        font-size: 14px;
+        padding: 48px 0;
+        font-size: 12px; color: var(--text-dim);
+    }
+    footer .wrap {
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    footer a { color: var(--text-dim); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* ─── DOWNLOAD BUTTON ─── */
+    .hero-download {
+        margin-top: 24px;
+    }
+    .btn-download {
+        display: inline-flex; align-items: center;
+        padding: 10px 20px; border-radius: 4px;
+        font-size: 13px; font-weight: 500; cursor: default;
+        font-family: inherit;
+        background: transparent;
+        color: var(--text-dim);
+        border: 1px solid var(--border);
+        text-decoration: none;
         opacity: 0.6;
+        pointer-events: none;
+    }
+    .coming-soon {
+        margin-left: 10px;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-dim);
+        border: 1px solid var(--border);
+        padding: 2px 8px;
+        border-radius: 3px;
+    }
+
+    /* ─── REVEAL ─── */
+    .reveal {
+        opacity: 0; transform: translateY(16px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    .reveal.visible {
+        opacity: 1; transform: translateY(0);
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: #1a1a28; border-radius: 3px; }
+
+    @media (max-width: 768px) {
+        nav { padding: 16px 24px; }
+        nav .links a { margin-left: 20px; }
+        .hero-content { margin-left: 0; padding: 0 24px; }
+        .wrap { padding: 0 24px; }
+        .cols { grid-template-columns: 1fr; gap: 24px; }
+        .item-list li { grid-template-columns: 1fr; gap: 8px; }
+        footer .wrap { flex-direction: column; gap: 8px; }
     }
 </style>
-
 </head>
 
 <body>
 
-<header>
-    <h1>Datalog</h1>
-    <p>Sistema de creación, seguimiento y análisis de datos en tiempo real</p>
-    <button class="btn">Empezar</button>
-</header>
+<nav>
+    <div class="logo">Datalog</div>
+    <div class="links">
+        <a href="#info">About</a>
+        <a href="#details">Details</a>
+        <a href="#code">Code</a>
+    </div>
+</nav>
 
-<section>
-    <h2>¿Qué es Datalog?</h2>
-    <p>
-        Datalog es una plataforma para crear registros estructurados, analizar métricas
-        y visualizar datos en informes automáticos.
-    </p>
-</section>
-
-<section>
-    <h2>Funciones principales</h2>
-
-    <div class="grid">
-        <div class="card">
-            <h3>Creación de logs</h3>
-            <p>Define plantillas personalizadas para registrar datos.</p>
+<div class="hero">
+    <div id="aurora-container"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Take your data<br>one step further</h1>
+        <p>
+            Datalog is a tool for recording, organizing,
+            and querying structured data. Simple, fast, no fuss.
+        </p>
+        <div class="hero-cta">
+            <button class="btn btn-filled" onclick="document.getElementById('details').scrollIntoView({behavior:'smooth'})">Learn more</button>
+            <button class="btn btn-outline" onclick="document.getElementById('code').scrollIntoView({behavior:'smooth'})">View code</button>
         </div>
-
-        <div class="card">
-            <h3>Editor dinámico</h3>
-            <p>Modifica estructuras de datos en tiempo real sin complicaciones.</p>
-        </div>
-
-        <div class="card">
-            <h3>Análisis automático</h3>
-            <p>Calcula medias, tendencias y estadísticas instantáneamente.</p>
-        </div>
-
-        <div class="card">
-            <h3>Exportación</h3>
-            <p>Genera informes listos para uso profesional.</p>
+        <div class="hero-download">
+            <a href="#" class="btn-download" onclick="return false;">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="margin-right:6px;">
+                    <path d="M1 11.5L8 14.5L15 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8 2V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                Download for Windows
+                <span class="coming-soon">Coming soon</span>
+            </a>
         </div>
     </div>
-</section>
+</div>
 
-<section>
-    <h2>Editor de ejemplo</h2>
-    <div class="editor">
-Nombre proyecto: ________  
-Fecha: ________  
-Descripción:  
---------------------------------  
-|                              |  
---------------------------------  
+<hr class="divider">
+
+<div class="wrap">
+    <div id="info" class="block reveal">
+        <h2>A clear idea,<br>carefully built</h2>
+        <div class="cols">
+            <div>
+                <p>
+                    It came from a real need: keeping project records
+                    without relying on messy spreadsheets or tools that
+                    complicate more than they solve.
+                </p>
+                <p>
+                    Every design decision has a purpose. Nothing is there
+                    just to look good. If something exists, it's because
+                    you need it to.
+                </p>
+            </div>
+            <div>
+                <p>
+                    <span class="highlight">No unnecessary dependencies.</span>
+                    Datalog runs on the basics. It doesn't need a dedicated
+                    server or a three-hour setup.
+                </p>
+                <p>
+                    <span class="highlight">Built to scale.</span>
+                    From a personal project to a twenty-person team.
+                    Same data, same speed.
+                </p>
+            </div>
+        </div>
     </div>
-</section>
+</div>
+
+<hr class="divider">
+
+<div class="wrap">
+    <div id="details" class="list-block reveal">
+        <h2>What it includes</h2>
+        <ul class="item-list">
+            <li>
+                <span class="item-num">01</span>
+                <div>
+                    <h3>Structured records</h3>
+                    <p>Define field types, validations, and relationships.
+                       Every entry follows a format, not free text.</p>
+                </div>
+            </li>
+            <li>
+                <span class="item-num">02</span>
+                <div>
+                    <h3>Direct queries</h3>
+                    <p>Search by date, field, or value. No new syntax to learn.
+                       The filter is just common sense.</p>
+                </div>
+            </li>
+            <li>
+                <span class="item-num">03</span>
+                <div>
+                    <h3>Automatic reports</h3>
+                    <p>Pick a date range and Datalog generates tables,
+                       charts, and summaries ready to use.</p>
+                </div>
+            </li>
+            <li>
+                <span class="item-num">04</span>
+                <div>
+                    <h3>Real export</h3>
+                    <p>CSV, JSON, PDF. No intermediate steps. One button,
+                       one file. Clean format, no junk.</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<hr class="divider">
+
+<div class="wrap">
+    <div id="code" class="code-block reveal">
+        <h2>What a project looks like</h2>
+        <p>The editor is plain text with basic highlighting. Nothing to learn.</p>
+        <div class="code-window">
+            <div class="code-bar">
+                <span class="code-dot"></span>
+                <span class="code-dot"></span>
+                <span class="code-dot"></span>
+                <span>datalog.txt</span>
+            </div>
+            <div class="code-body" contenteditable="true" spellcheck="false"><span class="k">project</span>:   <span class="s">"Inventory catalog"</span>
+<span class="k">author</span>:    <span class="s">"Maria"</span>
+<span class="k">date</span>:      <span class="s">"2026-07-07"</span>
+<span class="k">records</span>:   <span class="n">342</span>
+<span class="k">status</span>:    <span class="s">"active"</span>
+<span class="c">// edit directly here</span></div>
+        </div>
+    </div>
+</div>
 
 <footer>
-    Datalog © 2026 — Sistema de gestión de datos
+    <div class="wrap">
+        <span>Datalog, 2026</span>
+        <a href="#">Github</a>
+    </div>
 </footer>
+
+<script>
+/* ─── AURORA ─── */
+(function() {
+    var container = document.getElementById('aurora-container');
+    if (!container) return;
+
+    function hexToRgb(hex) {
+        return [
+            parseInt(hex.slice(1,3),16)/255,
+            parseInt(hex.slice(3,5),16)/255,
+            parseInt(hex.slice(5,7),16)/255
+        ];
+    }
+
+    var VERT = '#version 300 es\nin vec2 position;\nvoid main(){gl_Position=vec4(position,0,1);}\n';
+
+    var FRAG = '#version 300 es\n' +
+    'precision highp float;\n' +
+    'uniform float uTime;\n' +
+    'uniform float uAmplitude;\n' +
+    'uniform vec3 uColorStops[3];\n' +
+    'uniform vec2 uResolution;\n' +
+    'uniform float uBlend;\n' +
+    'out vec4 fragColor;\n' +
+    'vec3 permute(vec3 x){return mod(((x*34.0)+1.0)*x,289.0);}\n' +
+    'float snoise(vec2 v){\n' +
+    '  const vec4 C=vec4(0.211324865405187,0.366025403784439,-0.577350269189626,0.024390243902439);\n' +
+    '  vec2 i=floor(v+dot(v,C.yy));\n' +
+    '  vec2 x0=v-i+dot(i,C.xx);\n' +
+    '  vec2 i1=(x0.x>x0.y)?vec2(1,0):vec2(0,1);\n' +
+    '  vec4 x12=x0.xyxy+C.xxzz;\n' +
+    '  x12.xy-=i1;\n' +
+    '  i=mod(i,289.0);\n' +
+    '  vec3 p=permute(permute(i.y+vec3(0,i1.y,1))+i.x+vec3(0,i1.x,1));\n' +
+    '  vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.0);\n' +
+    '  m=m*m;m=m*m;\n' +
+    '  vec3 x=2.0*fract(p*C.www)-1.0;\n' +
+    '  vec3 h=abs(x)-0.5;\n' +
+    '  vec3 ox=floor(x+0.5);\n' +
+    '  vec3 a0=x-ox;\n' +
+    '  m*=1.79284291400159-0.85373472095314*(a0*a0+h*h);\n' +
+    '  vec3 g;\n' +
+    '  g.x=a0.x*x0.x+h.x*x0.y;\n' +
+    '  g.yz=a0.yz*x12.xz+h.yz*x12.yw;\n' +
+    '  return 130.0*dot(m,g);\n' +
+    '}\n' +
+    'struct CS{vec3 c;float p;};\n' +
+    'vec3 ramp(CS a,CS b,CS c,float f){\n' +
+    '  int i=0;\n' +
+    '  if(a.p<=f)i=0;\n' +
+    '  if(b.p<=f)i=1;\n' +
+    '  CS arr[3];arr[0]=a;arr[1]=b;arr[2]=c;\n' +
+    '  CS cur=arr[i];CS nxt=arr[i+1];\n' +
+    '  return mix(cur.c,nxt.c,(f-cur.p)/(nxt.p-cur.p));\n' +
+    '}\n' +
+    'void main(){\n' +
+    '  vec2 uv=gl_FragCoord.xy/uResolution;\n' +
+    '  vec3 col=ramp(CS(uColorStops[0],0.0),CS(uColorStops[1],0.5),CS(uColorStops[2],1.0),uv.x);\n' +
+    '  float h=snoise(vec2(uv.x*2.0+uTime*0.1,uTime*0.25))*0.5*uAmplitude;\n' +
+    '  h=exp(h);h=uv.y*2.0-h+0.2;\n' +
+    '  float i=0.6*h;\n' +
+    '  float a=smoothstep(0.20-uBlend*0.5,0.20+uBlend*0.5,i);\n' +
+    '  fragColor=vec4(i*col*a,a);\n' +
+    '}\n';
+
+    var canvas = document.createElement('canvas');
+    canvas.style.cssText = 'width:100%;height:100%;display:block';
+    container.appendChild(canvas);
+
+    var gl = canvas.getContext('webgl2', {
+        alpha: true, antialias: true, premultipliedAlpha: true,
+        depth: false, stencil: false
+    });
+    if (!gl) return;
+
+    gl.clearColor(0,0,0,0);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+    function mkShader(type, src) {
+        var s = gl.createShader(type);
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) { console.error(gl.getShaderInfoLog(s)); return null; }
+        return s;
+    }
+
+    var prog = gl.createProgram();
+    gl.attachShader(prog, mkShader(gl.VERTEX_SHADER, VERT));
+    gl.attachShader(prog, mkShader(gl.FRAGMENT_SHADER, FRAG));
+    gl.linkProgram(prog);
+    gl.useProgram(prog);
+
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,3,-1,-1,3]), gl.STATIC_DRAW);
+    var pos = gl.getAttribLocation(prog, 'position');
+    gl.enableVertexAttribArray(pos);
+    gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+
+    var loc = {};
+    ['uTime','uAmplitude','uResolution','uBlend'].forEach(function(n) { loc[n] = gl.getUniformLocation(prog, n); });
+    loc.uColorStops = [];
+    for (var i = 0; i < 3; i++) loc.uColorStops[i] = gl.getUniformLocation(prog, 'uColorStops['+i+']');
+
+    var stops = ['#5227FF','#7cff67','#5227FF'];
+
+    function resize() {
+        var w = container.clientWidth, h = container.clientHeight;
+        var d = Math.min(window.devicePixelRatio||1, 1.5);
+        canvas.width = w*d; canvas.height = h*d;
+        gl.viewport(0,0,canvas.width,canvas.height);
+    }
+    new ResizeObserver(resize).observe(container);
+    resize();
+
+    var t0 = performance.now(), id;
+    function loop(now) {
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.uniform1f(loc.uTime, (now-t0)*0.00005);
+        gl.uniform1f(loc.uAmplitude, 1.0);
+        gl.uniform1f(loc.uBlend, 0.5);
+        gl.uniform2f(loc.uResolution, canvas.width, canvas.height);
+        for (var i = 0; i < 3; i++) gl.uniform3fv(loc.uColorStops[i], hexToRgb(stops[i]));
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        id = requestAnimationFrame(loop);
+    }
+    id = requestAnimationFrame(loop);
+})();
+
+/* ─── REVEAL ─── */
+(function() {
+    var els = document.querySelectorAll('.reveal');
+    var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+            if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+        });
+    }, { threshold: 0.15 });
+    els.forEach(function(el) { obs.observe(el); });
+})();
+</script>
 
 </body>
 </html>
