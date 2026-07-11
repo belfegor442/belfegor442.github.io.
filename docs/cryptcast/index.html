@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptCast - Sound Wave Text Decoder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        @font-face{font-family:'PixelFont';src:url('DS-DIGI.TTF') format('truetype');font-weight:normal;font-style:normal;font-display:swap}
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--dark-bg:#0a0008;--deep-purple:#1a0022;--magenta:#6b0f3a;--magenta-light:#9b1b6a;--hot-pink:#d4266e;--orange:#ff8c00;--yellow:#ffb800;--yellow-glow:#ffd54f}
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',sans-serif;background:var(--dark-bg);color:#fff;overflow-x:hidden;min-height:100vh}
+
+        /* ===== PIXEL TRAIL CANVAS (el cursor) ===== */
+        #pixelTrailCanvas{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9990;pointer-events:none;image-rendering:pixelated;image-rendering:crisp-edges}
+
+        /* ===== CRT OVERLAYS ===== */
+        .scanlines{position:fixed;inset:0;z-index:9999;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(0,0,0,0.25) 1px,rgba(0,0,0,0.25) 3px);animation:sf 0.08s infinite}
+        @keyframes sf{0%{opacity:.9}50%{opacity:.95}100%{opacity:.9}}
+        .noise-overlay{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.12;mix-blend-mode:overlay}
+        .noise-overlay canvas{width:100%;height:100%;image-rendering:pixelated}
+        .vhs-aberration{position:fixed;inset:0;z-index:9997;pointer-events:none;animation:vhsShift 6s ease-in-out infinite}
+        .vhs-aberration::before,.vhs-aberration::after{content:'';position:absolute;inset:0;pointer-events:none}
+        .vhs-aberration::before{background:rgba(255,0,0,0.06);mix-blend-mode:screen;animation:abR 3s ease-in-out infinite}
+        .vhs-aberration::after{background:rgba(0,0,255,0.06);mix-blend-mode:screen;animation:abB 3s ease-in-out infinite .3s}
+        @keyframes abR{0%,100%{transform:translate(0)}20%{transform:translate(4px,0)}40%{transform:translate(-2px,2px)}60%{transform:translate(3px,-1px)}80%{transform:translate(-4px,0)}}
+        @keyframes abB{0%,100%{transform:translate(0)}20%{transform:translate(-4px,0)}40%{transform:translate(2px,-2px)}60%{transform:translate(-3px,1px)}80%{transform:translate(4px,0)}}
+        @keyframes vhsShift{0%,90%,100%{opacity:1}91%{opacity:0;transform:translateX(2px)}92%{opacity:1;transform:translateX(-1px)}93%{opacity:0;transform:translateX(3px)}94%{opacity:1;transform:translateX(0)}}
+        .crt-vignette{position:fixed;inset:0;z-index:9995;pointer-events:none;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,0.7) 100%)}
+        .screen-flicker{position:fixed;inset:0;z-index:9994;pointer-events:none;background:#fff;opacity:0;animation:scrF 4s infinite}
+        @keyframes scrF{0%,90%,100%{opacity:0}91%{opacity:.04}92%{opacity:0}93%{opacity:.03}94%{opacity:0}95%{opacity:.02}}
+        .pixel-grid{position:fixed;inset:0;z-index:9993;pointer-events:none;opacity:.06;background-image:linear-gradient(rgba(255,255,255,0.15) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.15) 1px,transparent 1px);background-size:3px 3px}
+        .vhs-tracking{position:fixed;left:0;width:100%;height:60px;z-index:9992;pointer-events:none;background:linear-gradient(to bottom,transparent,rgba(155,27,106,0.25),rgba(255,184,0,0.08),transparent);animation:vhsT 8s linear infinite;opacity:.8}
+        .vhs-tracking-2{animation-delay:4s;animation-duration:10s;height:30px;background:linear-gradient(to bottom,transparent,rgba(255,184,0,0.12),transparent)}
+        @keyframes vhsT{0%{top:-60px}100%{top:calc(100vh + 60px)}}
+        .tear-line{position:fixed;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--yellow),var(--hot-pink),transparent);z-index:9991;pointer-events:none;opacity:0;animation:tl 10s linear infinite}
+        .tear-line-2{animation-delay:3s;animation-duration:9s;height:1px;background:linear-gradient(90deg,transparent,var(--hot-pink),var(--yellow),transparent)}
+        .tear-line-3{animation-delay:6s;animation-duration:12s;height:2px;background:linear-gradient(90deg,transparent,var(--yellow),var(--magenta),transparent)}
+        @keyframes tl{0%{top:-2px;opacity:0}2%{opacity:.7}4%{opacity:0}100%{top:100vh;opacity:0}}
+        .color-banding{position:fixed;inset:0;z-index:9988;pointer-events:none;background:repeating-linear-gradient(180deg,transparent 0px,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);mix-blend-mode:multiply}
+        .glitch-bar{position:fixed;left:0;width:100%;height:5px;background:rgba(255,184,0,0.5);z-index:9996;pointer-events:none;opacity:0;animation:gbm 4s linear infinite}
+        .glitch-bar-2{animation-delay:2s;animation-duration:5s;height:3px;background:rgba(212,38,110,0.5)}
+        .glitch-bar-3{animation-delay:4s;animation-duration:7s;height:7px;background:rgba(255,184,0,0.35)}
+        .glitch-bar-4{animation-delay:1s;animation-duration:3.5s;height:2px;background:rgba(155,27,106,0.6)}
+        @keyframes gbm{0%{top:-5%;opacity:0}3%{opacity:.9}8%{opacity:0}100%{top:105%;opacity:0}}
+        .interference{position:fixed;left:0;width:100%;height:100%;z-index:9986;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0px,transparent 3px,rgba(155,27,106,0.02) 3px,rgba(155,27,106,0.02) 4px);animation:intS 20s linear infinite}
+        @keyframes intS{from{background-position:0 0}to{background-position:0 200px}}
+
+        /* ===== BACKGROUND ===== */
+        .spectrogram-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden}
+        .spectrogram-bg::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 3%,rgba(107,15,58,0.15) 3%,rgba(107,15,58,0.15) 3.2%,transparent 3.2%,transparent 7%,rgba(155,27,106,0.1) 7%,rgba(155,27,106,0.1) 7.15%,transparent 7.15%)}
+        .spectrogram-bar{position:absolute;bottom:0;width:2px;background:linear-gradient(to top,var(--magenta),var(--hot-pink),transparent);opacity:0.3;animation:bg 3s ease-in-out infinite}
+        @keyframes bg{0%,100%{transform:scaleY(0.3);opacity:.15}50%{transform:scaleY(1);opacity:.4}}
+        #waveCanvasBg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
+        .particles{position:fixed;inset:0;z-index:2;pointer-events:none}
+        .particle{position:fixed;border-radius:50%;pointer-events:none;opacity:0;animation:fl 8s infinite}
+        @keyframes fl{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:.6}90%{opacity:.6}100%{transform:translateY(-10vh) scale(1);opacity:0}}
+
+        /* ===== CONTENT ===== */
+        .content{position:relative;z-index:10;min-height:100vh;animation:shk 10s ease-in-out infinite}
+        @keyframes shk{0%,88%,100%{transform:translate(0)}89%{transform:translate(1px,0)}90%{transform:translate(-1px,1px)}91%{transform:translate(2px,0)}92%{transform:translate(0,-1px)}93%{transform:translate(-1px,0)}94%{transform:translate(0)}}
+        nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 5%;backdrop-filter:blur(10px);background:rgba(10,0,8,0.6);border-bottom:1px solid rgba(155,27,106,0.2);position:sticky;top:0;z-index:100}
+        .logo{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;background:linear-gradient(135deg,var(--yellow),var(--orange),var(--hot-pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;position:relative}
+        .logo::before{content:'CryptCast';position:absolute;top:0;left:3px;background:linear-gradient(135deg,var(--hot-pink),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0;animation:lg 3s infinite}
+        @keyframes lg{0%,88%,100%{opacity:0;transform:translate(0)}89%{opacity:.8;transform:translate(-3px,1px) skewX(5deg)}90%{opacity:0;transform:translate(3px,-1px)}91%{opacity:.6;transform:translate(-2px,0) skewX(-3deg)}92%{opacity:0;transform:translate(0)}}
+        .nav-links{display:flex;gap:2rem;list-style:none}
+        .nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;transition:all 0.3s;position:relative}
+        .nav-links a:hover{color:var(--yellow)}
+        .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--yellow);transition:width 0.3s}
+        .nav-links a:hover::after{width:100%}
+
+        .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem 5%;position:relative;animation:hd 8s infinite}
+        @keyframes hd{0%,92%,100%{transform:translate(0) skewX(0)}93%{transform:translate(1px,0) skewX(0.2deg)}94%{transform:translate(-2px,1px) skewX(-0.1deg)}95%{transform:translate(0,-1px) skewX(0.15deg)}96%{transform:translate(0) skewX(0)}}
+        .hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.2rem;border:1px solid rgba(255,184,0,0.3);border-radius:50px;background:rgba(255,184,0,0.05);color:var(--yellow);font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:2rem;animation:fiu 1s ease}
+        .pulse-dot{width:8px;height:8px;background:var(--yellow);border-radius:50%;animation:pu 2s infinite}
+        @keyframes pu{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+        .hero-title{font-family:'Orbitron',monospace;font-size:clamp(3rem,8vw,7rem);font-weight:900;line-height:1;margin-bottom:1.5rem;animation:fiu 1s ease 0.2s both;position:relative}
+        .hero-title .line1{display:block;background:linear-gradient(135deg,var(--yellow) 0%,var(--orange) 50%,var(--hot-pink) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 40px rgba(255,184,0,0.4));font-family:'PixelFont',monospace}
+        .hero-title .line2{display:block;font-size:0.4em;color:rgba(255,255,255,0.5);letter-spacing:12px;text-transform:uppercase;margin-top:0.5rem;-webkit-text-fill-color:rgba(255,255,255,0.5)}
+        .noise-text{animation:nt 0.15s infinite}
+        @keyframes nt{0%,100%{text-shadow:0 0 0 transparent}20%{text-shadow:-2px 0 rgba(255,0,0,0.15),2px 0 rgba(0,0,255,0.15)}40%{text-shadow:1px 0 rgba(255,0,0,0.1),-1px 0 rgba(0,0,255,0.1)}60%{text-shadow:0 2px rgba(255,0,0,0.12),0 -2px rgba(0,0,255,0.12)}80%{text-shadow:-1px 1px rgba(255,0,0,0.08),1px -1px rgba(0,0,255,0.08)}}
+        .hero-subtitle{font-size:1.2rem;color:rgba(255,255,255,0.6);max-width:600px;line-height:1.8;margin-bottom:3rem;animation:fiu 1s ease 0.4s both}
+        .hero-buttons{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;animation:fiu 1s ease 0.6s both}
+        .btn-primary{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.5rem;background:linear-gradient(135deg,var(--yellow),var(--orange));color:var(--dark-bg);border:none;border-radius:50px;font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.3s;text-decoration:none;box-shadow:0 0 30px rgba(255,184,0,0.3);animation:bg2 5s infinite}
+        @keyframes bg2{0%,93%,100%{box-shadow:0 0 30px rgba(255,184,0,0.3)}94%{box-shadow:0 0 40px rgba(255,184,0,0.6),-3px 0 rgba(255,0,0,0.3),3px 0 rgba(0,100,255,0.3)}95%{box-shadow:0 0 20px rgba(255,184,0,0.2)}96%{box-shadow:0 0 50px rgba(255,184,0,0.5),2px 0 rgba(255,0,0,0.2),-2px 0 rgba(0,100,255,0.2)}}
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(255,184,0,0.5)}
+        .btn-secondary{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.5rem;background:transparent;color:var(--yellow);border:1px solid rgba(255,184,0,0.4);border-radius:50px;font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.3s;text-decoration:none}
+        .btn-secondary:hover{background:rgba(255,184,0,0.1);border-color:var(--yellow);transform:translateY(-2px)}
+        @keyframes fiu{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+        .wave-visualizer{position:relative;width:100%;max-width:800px;height:120px;margin:4rem auto 0;animation:fiu 1s ease 0.8s both}
+        .wave-visualizer canvas{width:100%;height:100%}
+
+        .features{padding:8rem 5%}.section-header{text-align:center;margin-bottom:5rem}
+        .section-header h2{font-family:'Orbitron',monospace;font-size:clamp(2rem,4vw,3rem);font-weight:700;margin-bottom:1rem;background:linear-gradient(135deg,#fff,rgba(255,255,255,0.7));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .section-header p{color:rgba(255,255,255,0.5);max-width:500px;margin:0 auto;line-height:1.7}
+        .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;max-width:1200px;margin:0 auto}
+        .feature-card{background:linear-gradient(135deg,rgba(26,0,34,0.8),rgba(10,0,8,0.9));border:1px solid rgba(155,27,106,0.2);border-radius:20px;padding:2.5rem;transition:all 0.4s;position:relative;overflow:hidden}
+        .feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--yellow),transparent);opacity:0;transition:opacity 0.4s}
+        .feature-card:hover{transform:translateY(-5px);border-color:rgba(255,184,0,0.3);box-shadow:0 20px 60px rgba(155,27,106,0.2)}
+        .feature-card:hover::before{opacity:1}
+        .feature-icon{width:60px;height:60px;border-radius:15px;background:linear-gradient(135deg,rgba(255,184,0,0.1),rgba(255,140,0,0.1));display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.5rem;border:1px solid rgba(255,184,0,0.2)}
+        .feature-card h3{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:var(--yellow)}
+        .feature-card p{color:rgba(255,255,255,0.6);line-height:1.7;font-size:0.95rem}
+
+        .spectrum-section{padding:8rem 5%;text-align:center}
+        .spectrum-display{max-width:900px;margin:0 auto;border-radius:20px;overflow:hidden;border:1px solid rgba(155,27,106,0.3);background:rgba(10,0,8,0.8);box-shadow:0 0 60px rgba(155,27,106,0.2)}
+        #spectrumCanvas{width:100%;height:300px;display:block}
+        .spectrum-labels{display:flex;justify-content:space-between;padding:1rem 1.5rem;border-top:1px solid rgba(155,27,106,0.2);color:rgba(255,255,255,0.4);font-size:0.75rem;font-family:'Orbitron',monospace}
+
+        .how-it-works{padding:8rem 5%}
+        .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:3rem;max-width:1000px;margin:0 auto}
+        .step{text-align:center;position:relative}
+        .step-number{font-family:'Orbitron',monospace;font-size:4rem;font-weight:900;background:linear-gradient(135deg,var(--magenta),var(--hot-pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0.3;line-height:1;margin-bottom:1rem}
+        .step h3{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:var(--yellow);margin-bottom:0.8rem}
+        .step p{color:rgba(255,255,255,0.5);line-height:1.7;font-size:0.9rem}
+
+        .cta-section{padding:8rem 5%;text-align:center}
+        .cta-box{max-width:700px;margin:0 auto;padding:4rem;border-radius:30px;background:linear-gradient(135deg,rgba(107,15,58,0.3),rgba(26,0,34,0.5));border:1px solid rgba(255,184,0,0.2);position:relative;overflow:hidden}
+        .cta-box::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent,rgba(255,184,0,0.05),transparent,rgba(155,27,106,0.05),transparent);animation:rot 10s linear infinite}
+        @keyframes rot{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        .cta-box h2{font-family:'Orbitron',monospace;font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;margin-bottom:1rem;position:relative;z-index:1}
+        .cta-box p{color:rgba(255,255,255,0.6);margin-bottom:2rem;position:relative;z-index:1}
+        .cta-box .btn-primary{position:relative;z-index:1}
+
+        footer{padding:3rem 5%;border-top:1px solid rgba(155,27,106,0.15);text-align:center}
+        footer p{color:rgba(255,255,255,0.3);font-size:0.85rem}
+        .footer-links{display:flex;justify-content:center;gap:2rem;margin-bottom:1rem}
+        .footer-links a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:0.85rem;transition:color 0.3s}
+        .footer-links a:hover{color:var(--yellow)}
+
+        canvas{image-rendering:pixelated;image-rendering:crisp-edges}
+        @media(max-width:768px){.nav-links{display:none}.hero-title .line2{letter-spacing:6px}.features-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr;gap:2rem}}
+    </style>
+</head>
+<body>
+
+    <!-- Pixel Trail Cursor -->
+    <canvas id="pixelTrailCanvas"></canvas>
+
+    <!-- CRT Overlays -->
+    <div class="scanlines"></div>
+    <div class="noise-overlay"><canvas id="noiseCanvas"></canvas></div>
+    <div class="vhs-aberration"></div>
+    <div class="crt-vignette"></div>
+    <div class="screen-flicker"></div>
+    <div class="pixel-grid"></div>
+    <div class="vhs-tracking"></div>
+    <div class="vhs-tracking vhs-tracking-2"></div>
+    <div class="glitch-bar"></div>
+    <div class="glitch-bar glitch-bar-2"></div>
+    <div class="glitch-bar glitch-bar-3"></div>
+    <div class="glitch-bar glitch-bar-4"></div>
+    <div class="tear-line"></div>
+    <div class="tear-line tear-line-2"></div>
+    <div class="tear-line tear-line-3"></div>
+    <div class="color-banding"></div>
+    <div class="interference"></div>
+
+    <!-- Background -->
+    <div class="spectrogram-bg" id="spectrogramBg"></div>
+    <canvas id="waveCanvasBg"></canvas>
+    <div class="particles" id="particles"></div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <nav>
+            <div class="logo">CryptCast</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#spectrum">Spectrum</a></li>
+                <li><a href="#cta">Download</a></li>
+            </ul>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-badge"><span class="pulse-dot"></span> Advanced Audio Technology</div>
+            <h1 class="hero-title">
+                <span class="line1" id="glitchTitle">CryptCast</span>
+                <span class="line2 noise-text">Audio Decoder</span>
+            </h1>
+            <p class="hero-subtitle">Transform sound waves into hidden information. Decode encrypted messages, analyze frequencies, and reveal secrets hidden in audio.</p>
+            <div class="hero-buttons">
+                <a href="#cta" class="btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    Get Started
+                </a>
+                <a href="#how" class="btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    How It Works
+                </a>
+            </div>
+            <div class="wave-visualizer"><canvas id="heroWave"></canvas></div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="section-header"><h2>Features</h2><p>Next-gen audio analysis to decode the invisible</p></div>
+            <div class="features-grid">
+                <div class="feature-card"><div class="feature-icon">&#x1F4E1;</div><h3>Spectral Analysis</h3><p>Decomposes audio into its frequency components to reveal hidden patterns in the sound spectrum.</p></div>
+                <div class="feature-card"><div class="feature-icon">&#x1F510;</div><h3>Decryption</h3><p>Advanced decryption algorithms that transform sound waves into readable text and meaningful data.</p></div>
+                <div class="feature-card"><div class="feature-icon">&#x1F3B5;</div><h3>Multi-Frequency</h3><p>Simultaneous analysis across multiple frequency bands for complete detection of hidden signals.</p></div>
+                <div class="feature-card"><div class="feature-icon">&#x26A1;</div><h3>Real-Time</h3><p>Instant audio analysis with real-time visual feedback while capturing sound.</p></div>
+                <div class="feature-card"><div class="feature-icon">&#x1F4CA;</div><h3>3D Visualization</h3><p>Three-dimensional representations of the audio spectrum for deep understanding of sound waves.</p></div>
+                <div class="feature-card"><div class="feature-icon">&#x1F3AF;</div><h3>Pattern Detection</h3><p>AI that identifies and classifies repetitive patterns in audio signals to decode complex codes.</p></div>
+            </div>
+        </section>
+
+        <section class="how-it-works" id="how">
+            <div class="section-header"><h2>How It Works</h2><p>Three steps to decode the secrets hidden in sound</p></div>
+            <div class="steps">
+                <div class="step"><div class="step-number">01</div><h3>Capture Audio</h3><p>Record or load a sound file containing the encrypted signal you want to analyze.</p></div>
+                <div class="step"><div class="step-number">02</div><h3>Analyze Spectrum</h3><p>Our analysis engine decomposes audio into frequencies and detects hidden patterns.</p></div>
+                <div class="step"><div class="step-number">03</div><h3>Decode Message</h3><p>Decryption algorithms translate sound waves into readable text or understandable data.</p></div>
+            </div>
+        </section>
+
+        <section class="spectrum-section" id="spectrum">
+            <div class="section-header"><h2>Live Spectrum</h2><p>Real-time visualization of frequency analysis</p></div>
+            <div class="spectrum-display">
+                <canvas id="spectrumCanvas"></canvas>
+                <div class="spectrum-labels"><span>0 Hz</span><span>1 kHz</span><span>5 kHz</span><span>10 kHz</span><span>20 kHz</span></div>
+            </div>
+        </section>
+
+        <section class="cta-section" id="cta">
+            <div class="cta-box">
+                <h2>Coming Soon</h2>
+                <p>CryptCast is currently in development. Coming soon for <strong>Windows 10/11</strong>.</p>
+                <span class="btn-primary" style="opacity:0.5;cursor:not-allowed;pointer-events:none">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download CryptCast
+                </span>
+                <p style="margin-top:1.5rem;font-size:0.8rem;color:rgba(255,255,255,0.3)">&#x1F5A5; Windows 10 / Windows 11 only</p>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a><a href="#">GitHub</a></div>
+            <p>&copy; 2026 CryptCast. Advanced audio decryption.</p>
+        </footer>
+    </div>
+
+    <script>
+    // ===== PIXEL TRAIL (el cursor) =====
+    (function(){
+        var c=document.getElementById('pixelTrailCanvas');
+        var ctx=c.getContext('2d');
+        var mouse={x:0,y:0};
+        var trail=[];
+        var GRID=50;
+        var MAX_AGE=80;
+        var COLOR='rgba(255,184,0,';
+
+        function resize(){c.width=window.innerWidth;c.height=window.innerHeight}
+        resize();
+        window.addEventListener('resize',resize);
+        document.addEventListener('mousemove',function(e){
+            mouse.x=e.clientX;mouse.y=e.clientY;
+            trail.push({x:e.clientX,y:e.clientY,age:0});
+            if(trail.length>300)trail=trail.slice(-300);
+        });
+
+        function drawTrail(){
+            ctx.clearRect(0,0,c.width,c.height);
+            var cellW=c.width/GRID,cellH=c.height/GRID;
+            var grid={};
+            for(var i=trail.length-1;i>=0;i--){
+                var p=trail[i];p.age++;
+                if(p.age>MAX_AGE){trail.splice(i,1);continue}
+                var gx=Math.floor(p.x/cellW),gy=Math.floor(p.y/cellH);
+                var k=gx+','+gy;
+                if(!grid[k]){grid[k]=1-p.age/MAX_AGE;}
+            }
+            for(var k in grid){
+                var parts=k.split(',');
+                var gx=parseInt(parts[0]),gy=parseInt(parts[1]);
+                var a=grid[k];
+                var sz=cellW*(0.3+a*0.7);
+                ctx.globalAlpha=a*0.9;
+                ctx.fillStyle=COLOR+a+')';
+                ctx.fillRect(gx*cellW+(cellW-sz)/2,gy*cellH+(cellH-sz)/2,sz,sz);
+                ctx.globalAlpha=a*0.3;
+                ctx.shadowColor=COLOR+'1)';
+                ctx.shadowBlur=sz;
+                ctx.fillRect(gx*cellW+(cellW-sz)/2,gy*cellH+(cellH-sz)/2,sz,sz);
+                ctx.shadowBlur=0;
+            }
+            ctx.globalAlpha=1;
+            requestAnimationFrame(drawTrail);
+        }
+        drawTrail();
+
+        // ===== SPECTROGRAM BARS =====
+        var bg=document.getElementById('spectrogramBg');
+        for(var i=0;i<50;i++){
+            var bar=document.createElement('div');
+            bar.className='spectrogram-bar';
+            bar.style.left=Math.random()*100+'%';
+            bar.style.height=(Math.random()*80+20)+'%';
+            bar.style.animationDelay=Math.random()*5+'s';
+            bar.style.animationDuration=(Math.random()*3+2)+'s';
+            bar.style.width=(Math.random()*3+1)+'px';
+            bg.appendChild(bar);
+        }
+
+        // ===== PARTICLES =====
+        var pc=document.getElementById('particles');
+        for(var i=0;i<30;i++){
+            var p=document.createElement('div');
+            p.className='particle';
+            p.style.left=Math.random()*100+'%';
+            p.style.animationDelay=Math.random()*8+'s';
+            p.style.animationDuration=(Math.random()*6+6)+'s';
+            p.style.background=Math.random()>0.5?'var(--yellow)':'var(--hot-pink)';
+            var sz=Math.random()*3+1;
+            p.style.width=sz+'px';p.style.height=sz+'px';
+            pc.appendChild(p);
+        }
+
+        // ===== NOISE CANVAS =====
+        var nc=document.getElementById('noiseCanvas');
+        var nctx=nc.getContext('2d');
+        function resizeNoise(){nc.width=Math.floor(window.innerWidth/8);nc.height=Math.floor(window.innerHeight/8)}
+        resizeNoise();window.addEventListener('resize',resizeNoise);
+        function drawNoise(){
+            var w=nc.width,h=nc.height;
+            var id=nctx.createImageData(w,h);var d=id.data;
+            for(var i=0;i<d.length;i+=4){var v=Math.random()*255;d[i]=v;d[i+1]=v;d[i+2]=v;d[i+3]=255}
+            nctx.putImageData(id,0,0);
+            requestAnimationFrame(drawNoise);
+        }
+        drawNoise();
+
+        // ===== BACKGROUND WAVES =====
+        var wc=document.getElementById('waveCanvasBg');
+        var wctx=wc.getContext('2d');
+        var wTime=0;
+        function resizeWBg(){wc.width=window.innerWidth;wc.height=window.innerHeight}
+        resizeWBg();window.addEventListener('resize',resizeWBg);
+        var waves=[
+            {y:0.3,amp:40,freq:0.008,speed:0.02,color:'rgba(107,15,58,0.15)'},
+            {y:0.5,amp:30,freq:0.012,speed:0.015,color:'rgba(155,27,106,0.1)'},
+            {y:0.7,amp:50,freq:0.006,speed:0.025,color:'rgba(212,38,110,0.08)'}
+        ];
+        function drawBgWaves(){
+            wctx.clearRect(0,0,wc.width,wc.height);
+            waves.forEach(function(w){
+                var baseY=wc.height*w.y;
+                wctx.beginPath();wctx.moveTo(0,baseY);
+                for(var x=0;x<wc.width;x++){
+                    var y=baseY+Math.sin(x*w.freq+wTime*w.speed)*w.amp+Math.sin(x*w.freq*1.5+wTime*w.speed*0.7)*w.amp*0.5;
+                    wctx.lineTo(x,y);
+                }
+                wctx.lineTo(wc.width,wc.height);wctx.lineTo(0,wc.height);wctx.closePath();
+                wctx.fillStyle=w.color;wctx.fill();
+            });
+            wTime++;requestAnimationFrame(drawBgWaves);
+        }
+        drawBgWaves();
+
+        // ===== HERO WAVE =====
+        var hw=document.getElementById('heroWave');
+        var hctx=hw.getContext('2d');
+        var hTime=0;
+        function resizeHW(){var r=hw.parentElement.getBoundingClientRect();hw.width=r.width;hw.height=r.height}
+        resizeHW();window.addEventListener('resize',resizeHW);
+        function drawHeroWave(){
+            var w=hw.width,h=hw.height;
+            hctx.clearRect(0,0,w,h);
+            for(var l=0;l<5;l++){
+                hctx.beginPath();hctx.moveTo(0,h/2);
+                for(var x=0;x<w;x++){
+                    var y=h/2+Math.sin(x*0.02+hTime*0.03+l)*(15+l*5)+Math.sin(x*0.05+hTime*0.02+l*2)*(8+l*3)+Math.cos(x*0.01+hTime*0.04)*10;
+                    hctx.lineTo(x,y);
+                }
+                var al=0.3-l*0.05;
+                var g=hctx.createLinearGradient(0,0,w,0);
+                g.addColorStop(0,'rgba(255,184,0,0)');g.addColorStop(0.2,'rgba(255,184,0,'+al+')');
+                g.addColorStop(0.5,'rgba(255,140,0,'+al+')');g.addColorStop(0.8,'rgba(212,38,110,'+al+')');
+                g.addColorStop(1,'rgba(155,27,106,0)');
+                hctx.strokeStyle=g;hctx.lineWidth=2;hctx.stroke();
+            }
+            hctx.beginPath();hctx.moveTo(0,h/2);
+            for(var x=0;x<w;x++){var y=h/2+Math.sin(x*0.03+hTime*0.04)*20+Math.sin(x*0.07+hTime*0.03)*10;hctx.lineTo(x,y)}
+            var gg=hctx.createLinearGradient(0,0,w,0);
+            gg.addColorStop(0,'rgba(255,184,0,0)');gg.addColorStop(0.3,'rgba(255,184,0,0.8)');
+            gg.addColorStop(0.5,'rgba(255,213,79,1)');gg.addColorStop(0.7,'rgba(255,140,0,0.8)');
+            gg.addColorStop(1,'rgba(212,38,110,0)');
+            hctx.strokeStyle=gg;hctx.lineWidth=2.5;
+            hctx.shadowColor='rgba(255,184,0,0.5)';hctx.shadowBlur=15;hctx.stroke();hctx.shadowBlur=0;
+            hTime++;requestAnimationFrame(drawHeroWave);
+        }
+        drawHeroWave();
+
+        // ===== SPECTRUM =====
+        var sc=document.getElementById('spectrumCanvas');
+        var sctx=sc.getContext('2d');
+        function resizeSC(){var r=sc.parentElement.getBoundingClientRect();sc.width=r.width;sc.height=300}
+        resizeSC();window.addEventListener('resize',resizeSC);
+        var BARS=128;var sData=new Array(BARS).fill(0);var tData=new Array(BARS).fill(0);
+        function updateT(){for(var i=0;i<BARS;i++){tData[i]=Math.min(1,Math.sin(i/BARS*Math.PI)*0.7+Math.random()*0.4+(Math.sin(i*0.3+Date.now()*0.001)+1)*0.2)}}
+        setInterval(updateT,150);updateT();
+        function drawSpectrum(){
+            var w=sc.width,h=sc.height;
+            sctx.fillStyle='rgba(10,0,8,0.3)';sctx.fillRect(0,0,w,h);
+            var bw=w/BARS;
+            for(var i=0;i<BARS;i++){
+                sData[i]+=(tData[i]-sData[i])*0.15;
+                var bh=sData[i]*(h-40);var r=i/BARS;
+                var red=Math.floor(107+r*148),gr=Math.floor(15+r*60),bl=Math.floor(58+r*52);
+                var g=sctx.createLinearGradient(0,h-20-bh,0,h-20);
+                g.addColorStop(0,'rgba('+red+','+gr+','+bl+',0.2)');g.addColorStop(0.5,'rgba('+red+','+gr+','+bl+',0.7)');g.addColorStop(1,'rgba(255,184,0,0.9)');
+                sctx.fillStyle=g;sctx.fillRect(i*bw+1,h-20-bh,bw-2,bh);
+                sctx.fillStyle='rgba(255,184,0,'+sData[i]*0.5+')';sctx.fillRect(i*bw+1,h-22-bh,bw-2,3);
+            }
+            requestAnimationFrame(drawSpectrum);
+        }
+        drawSpectrum();
+
+        // ===== GLITCH TITLE =====
+        var gt=document.getElementById('glitchTitle');
+        function triggerGlitch(){
+            if(!gt)return;
+            var intens=Math.random()*12;
+            gt.style.transform='translate('+(Math.random()-0.5)*intens+'px,'+(Math.random()-0.5)*intens/2+'px) skewX('+(Math.random()-0.5)*3+'deg)';
+            gt.style.filter='drop-shadow(0 0 40px rgba(255,184,0,0.4)) hue-rotate('+(Math.random()*20-10)+'deg)';
+            setTimeout(function(){gt.style.transform='';gt.style.filter='drop-shadow(0 0 40px rgba(255,184,0,0.4))'},80);
+            setTimeout(triggerGlitch,Math.random()*3000+1500);
+        }
+        setTimeout(triggerGlitch,2000);
+    })();
+    </script>
+</body>
+</html>
