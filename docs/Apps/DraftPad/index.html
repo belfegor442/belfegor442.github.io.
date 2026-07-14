@@ -1,852 +1,557 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weird Stuff</title>
-
-<link rel="icon" type="image/jpg" href="/icon.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
-<style>
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 5px #a855f7, 0 0 10px #a855f7, 0 0 20px #a855f7; }
-  50% { box-shadow: 0 0 10px #a855f7, 0 0 25px #d946ef, 0 0 50px #a855f7; }
-}
-
-@keyframes glow-text {
-  0%, 100% { text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7; }
-  50% { text-shadow: 0 0 20px #d946ef, 0 0 40px #a855f7, 0 0 60px #7c3aed; }
-}
-
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(60px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes section-line {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes card-glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(168, 85, 247, 0.6), 0 0 60px rgba(217, 70, 239, 0.3); }
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: #05070a;
-  color: #e5e7eb;
-  font-family: 'Share Tech Mono', monospace;
-  overflow-x: hidden;
-  cursor: none;
-  min-height: 100vh;
-}
-
-#cursor {
-  width: 10px;
-  height: 10px;
-  background: #e5e7eb;
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: difference;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s;
-}
-
-#cursor.hovering {
-  width: 40px;
-  height: 40px;
-  background: rgba(168, 85, 247, 0.3);
-  border: 1px solid #a855f7;
-}
-
-#cursor-trail {
-  width: 30px;
-  height: 30px;
-  border: 1px solid rgba(168, 85, 247, 0.3);
-  border-radius: 50%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: left 0.15s ease, top 0.15s ease, width 0.3s, height 0.3s, border-color 0.3s;
-}
-
-#cursor-trail.hovering {
-  width: 50px;
-  height: 50px;
-  border-color: rgba(217, 70, 239, 0.4);
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 40px;
-  border-bottom: 1px solid #111827;
-  position: relative;
-  z-index: 10;
-  animation: fade-in-up 0.8s ease-out;
-}
-
-.logo {
-  font-size: 13px;
-  letter-spacing: 5px;
-  color: #cbd5e1;
-  animation: glow-text 3s ease-in-out infinite;
-}
-
-nav a {
-  margin-left: 20px;
-  text-decoration: none;
-  font-size: 12px;
-  letter-spacing: 2px;
-  color: #4b5563;
-  cursor: none;
-  position: relative;
-  padding: 5px 0;
-  transition: color 0.3s;
-}
-
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: linear-gradient(90deg, #a855f7, #d946ef);
-  transition: width 0.3s ease;
-}
-
-nav a:hover { color: white; }
-nav a:hover::after { width: 100%; }
-
-.hero {
-  padding: 100px 40px;
-  position: relative;
-  z-index: 10;
-  min-height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero .proximity-text {
-  font-family: 'Roboto Flex', sans-serif;
-  font-size: 56px;
-  font-weight: 400;
-  line-height: 1.3;
-  background: linear-gradient(90deg, #e5e7eb, #a855f7, #e5e7eb);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.proximity-word {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.proximity-letter {
-  display: inline-block;
-}
-
-.proximity-sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-section {
-  padding: 80px 40px;
-  position: relative;
-  z-index: 10;
-}
-
-section h2 {
-  font-size: 42px;
-  margin-bottom: 20px;
-  position: relative;
-  display: inline-block;
-  animation: glow-text 4s ease-in-out infinite;
-}
-
-section h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  height: 2px;
-  width: 0;
-  background: linear-gradient(90deg, #a855f7, #d946ef, transparent);
-  animation: section-line 1s ease-out forwards;
-  animation-delay: 0.5s;
-}
-
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.scroll-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.project {
-  margin-bottom: 40px;
-  padding: 30px;
-  border: 1px solid #111827;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease;
-}
-
-.project::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.05), transparent);
-  transition: left 0.6s ease;
-}
-
-.project:hover {
-  border-color: #a855f7;
-  box-shadow: 0 0 30px rgba(168, 85, 247, 0.15), inset 0 0 30px rgba(168, 85, 247, 0.03);
-  transform: translateX(5px);
-}
-
-.project:hover::before { left: 100%; }
-.project h2 { font-size: 36px; margin-bottom: 10px; }
-.sub { color: #4b5563; margin-bottom: 15px; letter-spacing: 2px; }
-
-.btn {
-  display: inline-block;
-  padding: 16px 50px;
-  border: 2px solid #c026d3;
-  border-radius: 12px;
-  color: #e5e7eb;
-  text-decoration: none;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 14px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  position: relative;
-  overflow: hidden;
-  background: transparent;
-  cursor: none;
-  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.35s ease,
-              border-color 0.35s ease,
-              color 0.35s ease,
-              letter-spacing 0.35s ease;
-  box-shadow: 0 0 10px rgba(192, 38, 211, 0.3), 0 0 20px rgba(192, 38, 211, 0.15);
-}
-
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(192, 38, 211, 0.15), transparent);
-  transition: left 0.5s ease;
-}
-
-.btn:hover {
-  transform: scaleX(1.35) scaleY(0.82);
-  border-color: #e879f9;
-  color: white;
-  text-shadow: 0 0 12px rgba(232, 121, 249, 0.9);
-  box-shadow: 0 0 20px rgba(192, 38, 211, 0.6), 0 0 40px rgba(192, 38, 211, 0.35), 0 0 60px rgba(192, 38, 211, 0.15), inset 0 0 20px rgba(192, 38, 211, 0.1);
-  letter-spacing: 7px;
-}
-
-.btn:hover::before { left: 100%; }
-
-.btn:active {
-  transform: scaleX(0.92) scaleY(1.06);
-  transition-duration: 0.1s;
-}
-
-.btn-stretch {
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.35s ease,
-              border-color 0.35s ease,
-              color 0.35s ease;
-}
-
-.btn-stretch:hover {
-  animation: none;
-}
-
-#team { padding-bottom: 100px; }
-
-.team-grid {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 40px;
-}
-
-.team-card {
-  width: 260px;
-  height: 340px;
-  border-radius: 16px;
-  position: relative;
-  overflow: hidden;
-  cursor: none;
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border: 1px solid #1a1a2e;
-  background: #0a0a15;
-  flex-shrink: 0;
-}
-
-.team-card .card-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.3;
-  transition: all 0.5s ease;
-  filter: blur(2px);
-}
-
-.team-card .card-content {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 24px;
-  background: linear-gradient(to top, rgba(5, 7, 10, 0.95) 0%, transparent 60%);
-  z-index: 2;
-}
-
-.team-card .card-label {
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  margin-bottom: 6px;
-  transition: all 0.4s ease;
-}
-
-.team-card .card-subtitle {
-  font-size: 12px;
-  color: #9ca3af;
-  letter-spacing: 1px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.4s ease 0.1s;
-}
-
-.team-card .card-role {
-  font-size: 11px;
-  color: #a855f7;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-top: 4px;
-  opacity: 0.7;
-  transition: all 0.4s ease 0.15s;
-}
-
-.team-card .card-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 60px;
-  opacity: 0.15;
-  transition: all 0.5s ease;
-  z-index: 1;
-}
-
-.team-card::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #a855f7, #d946ef, #7c3aed);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.team-card::after {
-  content: '';
-  position: absolute;
-  inset: 1px;
-  border-radius: 15px;
-  background: #0a0a15;
-  z-index: -1;
-}
-
-.team-grid:hover .team-card {
-  filter: blur(4px) brightness(0.5);
-  transform: scale(0.92);
-}
-
-.team-grid:hover .team-card:hover {
-  filter: blur(0) brightness(1);
-  transform: scale(1.08) translateY(-10px);
-  border-color: transparent;
-  z-index: 10;
-  box-shadow: 0 20px 60px rgba(168, 85, 247, 0.4), 0 0 40px rgba(168, 85, 247, 0.2);
-}
-
-.team-grid:hover .team-card:hover .card-bg {
-  opacity: 0.6;
-  filter: blur(0);
-  transform: scale(1.1);
-}
-
-.team-grid:hover .team-card:hover .card-label {
-  transform: scale(1.12) translateY(-5px);
-  letter-spacing: 3px;
-  text-shadow: 0 0 20px rgba(168, 85, 247, 0.8);
-}
-
-.team-grid:hover .team-card:hover .card-subtitle {
-  opacity: 1;
-  transform: translateY(3px);
-}
-
-.team-grid:hover .team-card:hover .card-role { opacity: 1; }
-
-.team-grid:hover .team-card:hover .card-icon {
-  opacity: 0.3;
-  transform: translate(-50%, -60%) scale(1.2);
-}
-
-.team-grid:hover .team-card:hover::before { opacity: 1; }
-.team-card:hover { animation: card-glow-pulse 2s ease-in-out infinite; }
-
-#who p {
-  font-size: 18px;
-  line-height: 2;
-  color: #9ca3af;
-  transition: color 0.3s;
-}
-
-#who p:hover { color: #e5e7eb; }
-
-#contact p {
-  font-size: 16px;
-  line-height: 2;
-  color: #9ca3af;
-  transition: color 0.3s;
-}
-
-#contact p:hover { color: #d946ef; }
-
-.thanks {
-  padding: 80px 40px;
-  position: relative;
-  z-index: 10;
-}
-
-.thanks h2 {
-  font-size: 42px;
-  margin-bottom: 40px;
-  position: relative;
-  display: inline-block;
-  animation: glow-text 4s ease-in-out infinite;
-}
-
-.thanks h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  height: 2px;
-  width: 0;
-  background: linear-gradient(90deg, #a855f7, #d946ef, transparent);
-  animation: section-line 1s ease-out forwards;
-  animation-delay: 0.5s;
-}
-
-.thanks-card {
-  max-width: 700px;
-  margin: 0;
-}
-
-.thanks-num {
-  font-size: 14px;
-  color: #4b5563;
-  letter-spacing: 3px;
-  margin-bottom: 2px;
-}
-
-.thanks-role {
-  font-size: 12px;
-  color: #a855f7;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.thanks-name {
-  font-size: 36px;
-  font-weight: bold;
-  color: #e5e7eb;
-  letter-spacing: 2px;
-  margin-bottom: 16px;
-}
-
-.thanks-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, #a855f7, transparent);
-  margin-bottom: 16px;
-}
-
-.thanks-desc {
-  font-size: 14px;
-  color: #4b5563;
-  line-height: 1.8;
-}
-
-footer {
-  padding: 30px 40px;
-  border-top: 1px solid #111827;
-  color: #4b5563;
-  text-align: center;
-  position: relative;
-  z-index: 10;
-  transition: color 0.3s;
-}
-
-footer:hover { color: #a855f7; }
-
-.section-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #1a1a2e, transparent);
-}
-
-.gradual-blur {
-  position: fixed;
-  pointer-events: none;
-  z-index: 1000;
-  isolation: isolate;
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
-}
-
-.gradual-blur.visible { opacity: 1; }
-
-.gradual-blur-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.gradual-blur-inner > div {
-  position: absolute;
-  inset: 0;
-}
-
-@supports not (backdrop-filter: blur(1px)) {
-  .gradual-blur-inner > div {
-    background: rgba(5, 7, 10, 0.3);
-    opacity: 0.5;
-  }
-}
-
-.dot-field-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.electric-border {
-  position: relative;
-  border-radius: 16px;
-  overflow: visible;
-  isolation: isolate;
-  margin-bottom: 40px;
-}
-
-.eb-canvas-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 2;
-}
-
-.eb-canvas { display: block; }
-
-.eb-content {
-  position: relative;
-  border-radius: inherit;
-  z-index: 1;
-}
-
-.eb-layers {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.eb-glow-1,
-.eb-glow-2,
-.eb-background-glow {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  box-sizing: border-box;
-}
-
-.eb-glow-1 {
-  border: 2px solid var(--electric-border-color);
-  filter: blur(1px);
-  opacity: 0.6;
-}
-
-.eb-glow-2 {
-  border: 2px solid var(--electric-border-color);
-  filter: blur(4px);
-}
-
-.eb-background-glow {
-  z-index: -1;
-  transform: scale(1.1);
-  filter: blur(32px);
-  opacity: 0.3;
-  background: linear-gradient(-30deg, var(--electric-border-color), transparent, var(--electric-border-color));
-}
-
-.project {
-  margin-bottom: 0;
-  border: none;
-  overflow: hidden;
-}
-
-.project::before { display: none; }
-
-.project:hover {
-  border-color: transparent;
-  box-shadow: none;
-  transform: none;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DraftPad - Modern Notepad with AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0f;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .bg-glow {
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.04) 50%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            color: white;
+        }
+
+        .nav-logo-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: -0.3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 80px;
+            text-align: center;
+        }
+
+        .hero-icon {
+            width: 96px;
+            height: 96px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 42px;
+            color: white;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.25);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            font-size: 13px;
+            color: #9ca3af;
+            margin-bottom: 32px;
+        }
+
+        .hero-badge .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, #ffffff 0%, #9ca3af 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #6b7280;
+            max-width: 500px;
+            line-height: 1.6;
+            margin-bottom: 48px;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: rgba(255, 255, 255, 0.04);
+            color: #d1d5db;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .version-tag {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 32px;
+            font-weight: 400;
+        }
+
+        .features {
+            position: relative;
+            z-index: 1;
+            padding: 100px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .features-header h2 {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .features-header p {
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .feature-card {
+            padding: 40px 32px;
+            background: #0f0f17;
+            transition: background 0.2s;
+        }
+
+        .feature-card:hover {
+            background: #14141f;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon svg {
+            width: 20px;
+            height: 20px;
+            color: #8b5cf6;
+        }
+
+        .feature-card h3 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #e5e7eb;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .section-divider {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .cta {
+            position: relative;
+            z-index: 1;
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cta-box h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .cta-box p {
+            font-size: 15px;
+            color: #6b7280;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            padding: 32px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        footer p {
+            font-size: 13px;
+            color: #4b5563;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .features {
+                padding: 60px 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta {
+                padding: 60px 20px;
+            }
+
+            .cta-box {
+                padding: 40px 24px;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="dot-field-container" id="dotfield"></div>
-<div id="cursor"></div>
-<div id="cursor-trail"></div>
+    <div class="bg-glow"></div>
 
-<header>
-  <div class="logo">WEIRD STUFF</div>
-  <nav>
-    <a href="#who">WHO ARE?</a>
-    <a href="#projects">PROJECTS</a>
-    <a href="#team">OUR TEAM</a>
-    <a href="#contact">CONTACT</a>
-  </nav>
-</header>
+    <nav>
+        <a href="#" class="nav-logo">
+            <div class="nav-logo-icon">D</div>
+            <span class="nav-logo-text">DraftPad</span>
+        </a>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#download">Download</a>
+        </div>
+    </nav>
 
-<div class="hero">
-  <div class="proximity-text" id="hero-proximity"></div>
-</div>
+    <section class="hero">
+        <div class="hero-icon">D</div>
+        <div class="hero-badge">
+            <span class="dot"></span>
+            In Development
+        </div>
+        <h1>Write. Think.<br>Create.</h1>
+        <p>A modern notepad with built-in AI assistance. Clean interface, powerful features, and seamless workflow for your ideas.</p>
+        <div class="hero-buttons">
+            <button class="btn-primary" id="downloadBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+                Download for Windows
+            </button>
+            <a href="#features" class="btn-secondary">Learn more</a>
+        </div>
+        <p class="version-tag">v1.0.0 &bull; Coming soon for Windows</p>
+    </section>
 
-<section id="who" class="scroll-reveal">
-  <h2>WHO ARE?</h2>
-  <br>
-  <p>We're Weird Stuff.</p>
-  <p>We make software.</p>
-  <p>Sometimes because we need it.</p>
-  <p>Sometimes because we can.</p>
-</section>
+    <div class="section-divider"></div>
 
-<div class="section-divider"></div>
+    <section class="features" id="features">
+        <div class="features-header">
+            <h2>Everything you need</h2>
+            <p>Simple on the surface, powerful underneath.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                    </svg>
+                </div>
+                <h3>AI Assistant</h3>
+                <p>Get smart suggestions, summarize notes, and brainstorm ideas with integrated AI.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
+                    </svg>
+                </div>
+                <h3>Clean Interface</h3>
+                <p>Minimalist design that keeps you focused on what matters — your writing.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+                    </svg>
+                </div>
+                <h3>Syntax Support</h3>
+                <p>Write code snippets with syntax highlighting built right into your notes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+                    </svg>
+                </div>
+                <h3>Markdown Ready</h3>
+                <p>Full markdown support with live preview for beautiful formatted documents.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                    </svg>
+                </div>
+                <h3>Local First</h3>
+                <p>Your data stays on your device. No cloud, no accounts, no tracking.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </div>
+                <h3>Customizable</h3>
+                <p>Themes, fonts, and layouts — tailor DraftPad to fit your workflow.</p>
+            </div>
+        </div>
+    </section>
 
-<section id="projects" class="scroll-reveal">
-  <h2>PROJECTS</h2>
-  <br>
+    <div class="section-divider"></div>
 
-  <!-- Monix -->
-  <div class="electric-border" data-color="#a855f7" data-speed="1" data-chaos="0.12" data-border-radius="16">
-    <div class="eb-canvas-container"><canvas class="eb-canvas"></canvas></div>
-    <div class="eb-layers"><div class="eb-glow-1"></div><div class="eb-glow-2"></div><div class="eb-background-glow"></div></div>
-    <div class="eb-content">
-      <div class="project">
-        <h2>Monix</h2>
-        <p class="sub">ALL IN ONE SYSTEM SUITE</p>
-        <a class="btn btn-stretch" href="/Apps/Monix.web/">OPEN</a>
-      </div>
-    </div>
-  </div>
+    <section class="cta" id="download">
+        <div class="cta-box">
+            <h2>Ready when you are</h2>
+            <p>DraftPad is currently in development. Windows installer coming soon.</p>
+            <button class="btn-primary" id="downloadBtnBottom">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+                Download for Windows
+            </button>
+            <p class="version-tag" style="margin-top: 20px; margin-bottom: 0;">v1.0.0 &bull; Coming soon</p>
+        </div>
+    </section>
 
-  <!-- CryptCast -->
-  <div class="electric-border" data-color="#06b6d4" data-speed="1.08" data-chaos="0.14" data-border-radius="16">
-    <div class="eb-canvas-container"><canvas class="eb-canvas"></canvas></div>
-    <div class="eb-layers"><div class="eb-glow-1"></div><div class="eb-glow-2"></div><div class="eb-background-glow"></div></div>
-    <div class="eb-content">
-      <div class="project">
-        <h2>CryptCast</h2>
-        <p class="sub">TRANSFORM SOUND WAVES INTO HIDDEN INFORMATION. DECODE ENCRYPTED MESSAGES, ANALYZE FREQUENCIES, AND REVEAL SECRETS HIDDEN IN AUDIO.</p>
-        <a class="btn btn-stretch" href="https://weirdstuff.work.gd/cryptcast/">OPEN</a>
-      </div>
-    </div>
-  </div>
+    <footer>
+        <p>&copy; 2026 DraftPad. All rights reserved.</p>
+    </footer>
 
-  <!-- DataLog -->
-  <div class="electric-border" data-color="#9333ea" data-speed="1.05" data-chaos="0.13" data-border-radius="16">
-    <div class="eb-canvas-container"><canvas class="eb-canvas"></canvas></div>
-    <div class="eb-layers"><div class="eb-glow-1"></div><div class="eb-glow-2"></div><div class="eb-background-glow"></div></div>
-    <div class="eb-content">
-      <div class="project">
-        <h2>DataLog</h2>
-        <p class="sub">DATA COLLECTION & ANALYSIS PLATFORM</p>
-        <a class="btn btn-stretch" href="/Apps/DataLog/">OPEN</a>
-      </div>
-    </div>
-  </div>
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            showComingSoon();
+        });
 
-  <!-- Meat -->
-  <div class="electric-border" data-color="#d946ef" data-speed="1.1" data-chaos="0.15" data-border-radius="16">
-    <div class="eb-canvas-container"><canvas class="eb-canvas"></canvas></div>
-    <div class="eb-layers"><div class="eb-glow-1"></div><div class="eb-glow-2"></div><div class="eb-background-glow"></div></div>
-    <div class="eb-content">
-      <div class="project">
-        <h2>Meat</h2>
-        <p class="sub">WORK IN PROGRESS</p>
-        <a class="btn btn-stretch" href="/Apps/Meat/">OPEN</a>
-      </div>
-    </div>
-  </div>
+        document.getElementById('downloadBtnBottom').addEventListener('click', function() {
+            showComingSoon();
+        });
 
-  <!-- Telenet -->
-  <div class="electric-border" data-color="#7c3aed" data-speed="0.9" data-chaos="0.1" data-border-radius="16">
-    <div class="eb-canvas-container"><canvas class="eb-canvas"></canvas></div>
-    <div class="eb-layers"><div class="eb-glow-1"></div><div class="eb-glow-2"></div><div class="eb-background-glow"></div></div>
-    <div class="eb-content">
-      <div class="project">
-        <h2>Telenet</h2>
-        <p class="sub">COMMUNICATION & NETWORK SYSTEMS</p>
-        <a class="btn btn-stretch" href="https://weirdstuff.work.gd/Apps/telenet/index.html#builds">OPEN</a>
-      </div>
-    </div>
-  </div>
+        function showComingSoon() {
+            const overlay = document.createElement('div');
+            overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s';
 
-  <!-- Draftpad -->
-  <div class="electric-border" data-color="#a855f7" data-speed="1" data-chaos="0.12" data-border-radius="16">
-    <div class="eb-canvas-container"><canvas class="eb-canvas"></canvas></div>
-    <div class="eb-layers"><div class="eb-glow-1"></div><div class="eb-glow-2"></div><div class="eb-background-glow"></div></div>
-    <div class="eb-content">
-      <div class="project">
-        <h2>Draftpad</h2>
-        <p class="sub">A MODERN NOTEPAD WITH BUILT-IN AI ASSISTANCE. CLEAN INTERFACE, POWERFUL FEATURES, AND SEAMLESS WORKFLOW FOR YOUR IDEAS.</p>
-        <a class="btn btn-stretch" href="/Apps/Draftpad/">OPEN</a>
-      </div>
-    </div>
-  </div>
+            const modal = document.createElement('div');
+            modal.style.cssText = 'background:#14141f;border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:48px;text-align:center;max-width:380px;width:90%;transform:scale(0.95);transition:transform 0.2s';
+            modal.innerHTML = `
+                <div style="width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:24px;color:white;margin:0 auto 24px">D</div>
+                <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;color:#e5e7eb">Coming Soon</h3>
+                <p style="font-size:14px;color:#6b7280;line-height:1.6;margin-bottom:28px">The Windows installer is not available yet. DraftPad is currently in development.</p>
+                <button onclick="this.closest('div[style]').parentElement.remove()" style="padding:10px 24px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:#d1d5db;font-size:14px;cursor:pointer;font-family:inherit">Got it</button>
+            `;
 
-</section>
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
 
-<div class="section-divider"></div>
+            requestAnimationFrame(() => {
+                overlay.style.opacity = '1';
+                modal.style.transform = 'scale(1)';
+            });
 
-<section id="team" class="scroll-reveal">
-  <h2>OUR TEAM</h2>
-  <br>
-  <div class="team-grid">
-    <div class="team-card">
-      <div class="card-bg" style="background: linear-gradient(135deg, #1e1b4b, #312e81);"></div>
-      <div class="card-icon">&#9733;</div>
-      <div class="card-content">
-        <div class="card-label">BELFEGOR442</div>
-        <div class="card-subtitle">Owner and creator of Weird Stuff. Can't stop thinking about new ideas and making them real.</div>
-        <div class="card-role">CEO</div>
-      </div>
-    </div>
-    <div class="team-card">
-      <div class="card-bg" style="background: linear-gradient(135deg, #1a1a2e, #16213e);"></div>
-      <div class="card-icon">&#9830;</div>
-      <div class="card-content">
-        <div class="card-label">ACRIDCOSINE6168</div>
-        <div class="card-subtitle"></div>
-        <div class="card-role">CO-OWNER</div>
-      </div>
-    </div>
-    <div class="team-card">
-      <div class="card-bg" style="background: linear-gradient(135deg, #0f172a, #1e293b);"></div>
-      <div class="card-icon">&#9824;</div>
-      <div class="card-content">
-        <div class="card-label">ANTI_TW</div>
-        <div class="card-subtitle">Long live the empire!</div>
-        <div class="card-role">Designer & Programmer</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<div class="thanks scroll-reveal">
-  <h2>Special Thanks to:</h2>
-  <br>
-  <div class="thanks-card">
-    <div class="thanks-num">01</div>
-    <div class="thanks-role">My teacher</div>
-    <div class="thanks-name">MellamoJack</div>
-    <div class="thanks-divider"></div>
-    <div class="thanks-desc">My tech teacher, beta tester of web, monix and meat</div>
-  </div>
-</div>
-
-<div class="section-divider"></div>
-
-<section id="contact" class="scroll-reveal">
-  <h2>CONTACT</h2>
-  <br>
-  <p>Discord Server</p>
-  <p>orimuri12yt@gmail.com</p>
-</section>
-
-<footer>&copy; 2026 Weird Stuff</footer>
-
-<div class="gradual-blur" id="blur-bottom" style="bottom:0;left:0;right:0;height:8rem;"></div>
-
-<script src="script.js"></script>
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) overlay.remove();
+            });
+        }
+    </script>
 
 </body>
 </html>
