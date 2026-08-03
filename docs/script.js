@@ -640,3 +640,90 @@ document.querySelectorAll('.project').forEach(proj => {
     position: 'bottom', strength: 2, height: '8rem', divCount: 5, curve: 'bezier', exponential: true, opacity: 1
   });
 })();
+
+// ============================================================
+//  MONIX — MATRIX RAIN (dentro de la card, pausado fuera de vista)
+// ============================================================
+(function() {
+  const canvas = document.querySelector('.theme-monix .matrix-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const chars = 'アイウエオカキクケコサシスセソタチツテト0123456789';
+  const fontSize = 14;
+  let cols, drops, width, height, isVisible = true, animId = null;
+
+  function resize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = rect.width;
+    height = rect.height;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cols = Math.floor(width / fontSize);
+    drops = new Array(cols).fill(0).map(() => Math.floor(Math.random() * -30));
+  }
+
+  function draw() {
+    ctx.fillStyle = 'rgba(0, 6, 2, 0.18)';
+    ctx.fillRect(0, 0, width, height);
+    ctx.font = fontSize + 'px monospace';
+    for (let i = 0; i < cols; i++) {
+      const char = chars[Math.floor(Math.random() * chars.length)];
+      const y = drops[i] * fontSize;
+      ctx.fillStyle = y < fontSize ? '#c8ffd8' : '#39ff6a';
+      ctx.fillText(char, i * fontSize, y);
+      if (y > height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+    if (isVisible) animId = requestAnimationFrame(draw);
+  }
+
+  const io = new IntersectionObserver(([entry]) => {
+    isVisible = entry.isIntersecting;
+    if (isVisible && !animId) animId = requestAnimationFrame(draw);
+    else if (!isVisible && animId) { cancelAnimationFrame(animId); animId = null; }
+  });
+  io.observe(canvas.parentElement);
+
+  window.addEventListener('resize', resize);
+  resize();
+  animId = requestAnimationFrame(draw);
+})();
+
+// ============================================================
+//  CRYPTCAST — SCRAMBLE / DESCIFRADO DEL TÍTULO AL PASAR EL RATÓN
+// ============================================================
+(function() {
+  const el = document.querySelector('.cipher-title');
+  if (!el) return;
+  const original = el.textContent;
+  const glyphs = '!<>-_\\/[]{}—=+*^?#01';
+  let interval = null;
+
+  function scramble() {
+    let frame = 0;
+    const totalFrames = original.length * 3;
+    clearInterval(interval);
+    interval = setInterval(() => {
+      el.textContent = original
+        .split('')
+        .map((ch, i) => {
+          if (ch === ' ') return ' ';
+          const revealFrame = i * 3;
+          if (frame >= revealFrame + 6) return ch;
+          return glyphs[Math.floor(Math.random() * glyphs.length)];
+        })
+        .join('');
+      frame++;
+      if (frame > totalFrames) {
+        clearInterval(interval);
+        el.textContent = original;
+      }
+    }, 35);
+  }
+
+  el.closest('.project').addEventListener('mouseenter', scramble);
+})();
