@@ -37,6 +37,7 @@
   let dots = [];
   let mouse = { x: -9999, y: -9999, prevX: -9999, prevY: -9999, speed: 0 };
   let size = { w: 0, h: 0, offsetX: 0, offsetY: 0 };
+  let gradCache = null; // FIX: cache linear gradient, only rebuilt on resize
   let glowOpacity = 0;
   let engagement = 0;
   let frameCount = 0;
@@ -55,6 +56,12 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     size = { w, h, offsetX: 0, offsetY: 0 };
+
+    // FIX: gradient depends only on w/h, build once here instead of every frame
+    gradCache = ctx.createLinearGradient(0, 0, w, h);
+    gradCache.addColorStop(0, opts.gradientFrom);
+    gradCache.addColorStop(1, opts.gradientTo);
+
     buildDots(w, h);
   }
 
@@ -105,10 +112,7 @@
     glowEl.style.opacity = glowOpacity;
 
     ctx.clearRect(0, 0, w, h);
-    const grad = ctx.createLinearGradient(0, 0, w, h);
-    grad.addColorStop(0, opts.gradientFrom);
-    grad.addColorStop(1, opts.gradientTo);
-    ctx.fillStyle = grad;
+    ctx.fillStyle = gradCache; // FIX: reuse cached gradient instead of rebuilding
 
     const crSq = opts.cursorRadius * opts.cursorRadius;
     const rad = opts.dotRadius / 2;
@@ -268,19 +272,31 @@ document.querySelectorAll('a, .btn, .team-card').forEach(el => {
     });
   });
 
+  // FIX: split into a read-pass (getBoundingClientRect) and a write-pass
+  // (style.fontVariationSettings) so the browser doesn't force a synchronous
+  // reflow between every single letter, every frame.
   function tick() {
     const containerRect = container.getBoundingClientRect();
 
-    letterRefs.forEach(el => {
-      if (!el) return;
+    const updates = new Array(letterRefs.length);
+    for (let i = 0; i < letterRefs.length; i++) {
+      const el = letterRefs[i];
+      if (!el) { updates[i] = null; continue; }
       const rect = el.getBoundingClientRect();
       const cx = rect.left + rect.width / 2 - containerRect.left;
       const cy = rect.top + rect.height / 2 - containerRect.top;
       const dist = Math.sqrt((mouseX - cx) ** 2 + (mouseY - cy) ** 2);
+      updates[i] = { el, dist };
+    }
+
+    for (let i = 0; i < updates.length; i++) {
+      const u = updates[i];
+      if (!u) continue;
+      const { el, dist } = u;
 
       if (dist >= radius) {
         el.style.fontVariationSettings = fromSettings;
-        return;
+        continue;
       }
 
       const f = calcFalloff(dist);
@@ -289,7 +305,7 @@ document.querySelectorAll('a, .btn, .team-card').forEach(el => {
         return `'${axis}' ${v}`;
       }).join(', ');
       el.style.fontVariationSettings = settings;
-    });
+    }
 
     requestAnimationFrame(tick);
   }
@@ -347,7 +363,13 @@ document.querySelectorAll('.project').forEach(proj => {
 //  ELECTRIC BORDER (vanilla JS port of React Bits ElectricBorder)
 // ============================================================
 (function() {
-  const random = x => (Math.sin(x * 12.9898) * 43758.5453) % 1;
+  // FIX: (Math.sin(x*12.9898)*43758.5453) % 1 can be negative in JS,
+  // producing negative "random" values that broke the noise symmetry
+  // and made the border wobble unevenly. Normalize into [0, 1).
+  const random = x => {
+    const v = Math.sin(x * 12.9898) * 43758.5453;
+    return v - Math.floor(v);
+  };
 
   function noise2D(x, y) {
     const i = Math.floor(x);
@@ -522,8 +544,23 @@ document.querySelectorAll('.project').forEach(proj => {
       ctx.closePath();
       ctx.stroke();
 
-      animId = requestAnimationFrame(draw);
+      if (isVisible) animId = requestAnimationFrame(draw);
     }
+
+    // FIX: pause the rAF loop for electric borders scrolled out of view
+    // instead of running 6 heavy noise-based draws per frame at all times.
+    let isVisible = true;
+    const io = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible && !animId) {
+        lastFrameTime = performance.now();
+        animId = requestAnimationFrame(draw);
+      } else if (!isVisible && animId) {
+        cancelAnimationFrame(animId);
+        animId = null;
+      }
+    });
+    io.observe(container);
 
     const ro = new ResizeObserver(() => updateSize());
     ro.observe(container);
@@ -534,6 +571,7 @@ document.querySelectorAll('.project').forEach(proj => {
     container._ebCleanup = () => {
       if (animId) cancelAnimationFrame(animId);
       ro.disconnect();
+      io.disconnect();
     };
   });
 })();
