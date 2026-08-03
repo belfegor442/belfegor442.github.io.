@@ -1,10 +1,3 @@
-// ============================================================
-//  WEIRD STUFF - script.js
-// ============================================================
-
-// ============================================================
-//  DOT FIELD BACKGROUND (vanilla JS port of React DotField)
-// ============================================================
 (function() {
   const container = document.getElementById('dotfield');
   if (!container) return;
