@@ -1,251 +1,1437 @@
 ```html
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weird Stuff</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="icon" type="image/jpg" href="/icon.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <meta
+    name="description"
+    content="Weird Stuff — independent software, systems and experimental projects."
+  >
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+  <title>Weird Stuff</title>
 
-body{
-  background:#05070a;
-  color:#e5e7eb;
-  font-family:'Share Tech Mono', monospace;
-  overflow-x:hidden;
-  cursor:none;
-}
+  <link rel="icon" type="image/jpg" href="/icon.jpg">
 
-#cursor{
-  width:10px;
-  height:10px;
-  background:#e5e7eb;
-  position:fixed;
-  top:0;
-  left:0;
-  pointer-events:none;
-  z-index:9999;
-  mix-blend-mode:difference;
-  transform:translate(-50%,-50%);
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-#cursor-trail{
-  width:30px;
-  height:30px;
-  border:1px solid rgba(255,255,255,0.2);
-  border-radius:50%;
-  position:fixed;
-  top:0;
-  left:0;
-  pointer-events:none;
-  z-index:9998;
-  transform:translate(-50%,-50%);
-  transition:left .12s ease, top .12s ease;
-}
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet"
+  >
 
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:24px 40px;
-  border-bottom:1px solid #111827;
-}
+  <style>
+    :root {
+      --bg: #05070a;
+      --bg-soft: #080b10;
+      --panel: rgba(10, 14, 20, .72);
 
-.logo{
-  font-size:13px;
-  letter-spacing:5px;
-  color:#cbd5e1;
-}
+      --text: #e7eaf0;
+      --muted: #737b89;
+      --dim: #3c434e;
 
-nav a{
-  margin-left:20px;
-  text-decoration:none;
-  font-size:12px;
-  letter-spacing:2px;
-  color:#4b5563;
-  cursor:none;
-}
+      --line: #151b24;
+      --line-hover: #2a3441;
 
-nav a:hover{
-  color:white;
-}
+      --accent: #dfe5ed;
 
-.hero{
-  padding:100px 40px;
-}
+      --mono: "Share Tech Mono", monospace;
+      --sans: Inter, system-ui, sans-serif;
 
-.hero h1{
-  font-size:56px;
-  font-weight:400;
-  line-height:1.1;
-}
+      --max-width: 1280px;
+    }
 
-section{
-  padding:40px;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.project{
-  margin-bottom:40px;
-  padding:30px;
-  border:1px solid #111827;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.project h2{
-  font-size:36px;
-  margin-bottom:10px;
-}
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(
+          circle at 50% -20%,
+          rgba(255,255,255,.045),
+          transparent 38%
+        ),
+        var(--bg);
 
-.sub{
-  color:#4b5563;
-  margin-bottom:15px;
-}
+      color: var(--text);
+      font-family: var(--sans);
 
-.btn{
-  display:inline-block;
-  padding:10px 16px;
-  border:1px solid #333;
-  color:#e5e7eb;
-  text-decoration:none;
-}
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-.btn:hover{
-  border-color:#888;
-}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
 
-footer{
-  padding:30px 40px;
-  border-top:1px solid #111827;
-  color:#4b5563;
-}
-</style>
+      pointer-events: none;
+      z-index: 1000;
+
+      opacity: .035;
+
+      background-image:
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 2px,
+          rgba(255,255,255,.25) 3px
+        );
+    }
+
+    ::selection {
+      background: #e5e7eb;
+      color: #05070a;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* =========================
+       CURSOR
+    ========================= */
+
+    #cursor {
+      position: fixed;
+
+      width: 7px;
+      height: 7px;
+
+      top: 0;
+      left: 0;
+
+      background: #fff;
+      border-radius: 50%;
+
+      pointer-events: none;
+      z-index: 9999;
+
+      transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
+
+      transition:
+        width .2s ease,
+        height .2s ease;
+    }
+
+    #cursor-trail {
+      position: fixed;
+
+      width: 32px;
+      height: 32px;
+
+      top: 0;
+      left: 0;
+
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 50%;
+
+      pointer-events: none;
+      z-index: 9998;
+
+      transform: translate(-50%, -50%);
+
+      transition:
+        left .08s linear,
+        top .08s linear,
+        width .2s ease,
+        height .2s ease,
+        border-color .2s ease;
+    }
+
+    body.cursor-active #cursor {
+      width: 12px;
+      height: 12px;
+    }
+
+    body.cursor-active #cursor-trail {
+      width: 46px;
+      height: 46px;
+      border-color: rgba(255,255,255,.5);
+    }
+
+    /* =========================
+       LAYOUT
+    ========================= */
+
+    .container {
+      width: min(
+        calc(100% - 80px),
+        var(--max-width)
+      );
+
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 130px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+
+      z-index: 100;
+
+      border-bottom: 1px solid var(--line);
+
+      background: rgba(5,7,10,.78);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav {
+      min-height: 76px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+
+      text-decoration: none;
+
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 4px;
+
+      color: var(--text);
+    }
+
+    .logo-mark {
+      width: 9px;
+      height: 9px;
+
+      border: 1px solid var(--text);
+
+      transform: rotate(45deg);
+
+      transition: transform .3s ease;
+    }
+
+    .logo:hover .logo-mark {
+      transform: rotate(135deg);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    nav a {
+      position: relative;
+
+      color: var(--muted);
+
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 2px;
+
+      text-decoration: none;
+
+      transition: color .2s ease;
+    }
+
+    nav a::after {
+      content: "";
+
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+
+      width: 0;
+      height: 1px;
+
+      background: var(--text);
+
+      transition: width .25s ease;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: calc(100vh - 77px);
+
+      display: flex;
+      align-items: center;
+
+      padding: 100px 0 130px;
+
+      position: relative;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+
+      background-size: 80px 80px;
+
+      opacity: .22;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          black,
+          transparent 85%
+        );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+
+      max-width: 900px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      margin-bottom: 30px;
+
+      color: var(--muted);
+
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+
+      width: 28px;
+      height: 1px;
+
+      background: var(--muted);
+    }
+
+    .hero h1 {
+      max-width: 850px;
+
+      font-family: var(--mono);
+      font-size: clamp(46px, 8vw, 92px);
+      font-weight: 400;
+      line-height: .98;
+      letter-spacing: -4px;
+    }
+
+    .hero h1 span {
+      color: var(--muted);
+    }
+
+    .hero-description {
+      max-width: 560px;
+
+      margin-top: 34px;
+
+      color: var(--muted);
+
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+
+      margin-top: 48px;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+
+      color: var(--muted);
+
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+
+      background: #b8c1cc;
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 0 4px rgba(184,193,204,.06);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 38px;
+      right: 0;
+
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      color: var(--dim);
+
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 2px;
+
+      writing-mode: vertical-rl;
+    }
+
+    /* =========================
+       SECTION HEADER
+    ========================= */
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      gap: 40px;
+
+      margin-bottom: 55px;
+    }
+
+    .section-number {
+      margin-bottom: 13px;
+
+      color: var(--dim);
+
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .section-title {
+      font-family: var(--mono);
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 400;
+      letter-spacing: -2px;
+    }
+
+    .section-intro {
+      max-width: 410px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* =========================
+       WHO
+    ========================= */
+
+    .who-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .who-main {
+      padding: 55px 55px 55px 0;
+
+      border-right: 1px solid var(--line);
+    }
+
+    .who-main p {
+      max-width: 650px;
+
+      font-family: var(--mono);
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.5;
+    }
+
+    .who-main p + p {
+      color: var(--muted);
+    }
+
+    .who-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      padding: 55px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+
+      padding: 16px 0;
+
+      border-bottom: 1px solid var(--line);
+
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .info-row span:first-child {
+      color: var(--dim);
+    }
+
+    .info-row span:last-child {
+      color: var(--muted);
+    }
+
+    /* =========================
+       PROJECTS
+    ========================= */
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .project {
+      position: relative;
+
+      min-height: 350px;
+
+      padding: 38px;
+
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,.018),
+        transparent 50%
+      );
+
+      overflow: hidden;
+
+      transition:
+        background .3s ease,
+        border-color .3s ease;
+    }
+
+    .project::before {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      bottom: 0;
+
+      width: 100%;
+      height: 1px;
+
+      background: var(--text);
+
+      transform: scaleX(0);
+      transform-origin: left;
+
+      transition: transform .4s ease;
+    }
+
+    .project:hover {
+      background: rgba(255,255,255,.025);
+      border-color: var(--line-hover);
+    }
+
+    .project:hover::before {
+      transform: scaleX(1);
+    }
+
+    .project-index {
+      color: var(--dim);
+
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .project-content {
+      position: absolute;
+      left: 38px;
+      right: 38px;
+      bottom: 38px;
+    }
+
+    .project h3 {
+      font-family: var(--mono);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 400;
+      letter-spacing: -2px;
+
+      margin-bottom: 10px;
+    }
+
+    .project-description {
+      max-width: 450px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-top: 30px;
+    }
+
+    .project-status {
+      color: var(--dim);
+
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    .project-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 10px 15px;
+
+      border: 1px solid var(--line-hover);
+
+      color: var(--text);
+
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 1px;
+
+      text-decoration: none;
+
+      transition:
+        background .2s ease,
+        border-color .2s ease,
+        color .2s ease;
+    }
+
+    .project-button span {
+      transition: transform .2s ease;
+    }
+
+    .project-button:hover {
+      background: var(--text);
+      border-color: var(--text);
+      color: var(--bg);
+    }
+
+    .project-button:hover span {
+      transform: translateX(3px);
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact {
+      min-height: 520px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-label {
+      margin-bottom: 20px;
+
+      color: var(--dim);
+
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 3px;
+    }
+
+    .contact h2 {
+      max-width: 800px;
+
+      font-family: var(--mono);
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -3px;
+    }
+
+    .contact-link {
+      display: inline-block;
+
+      margin-top: 35px;
+
+      color: var(--muted);
+
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 1px;
+
+      text-decoration: none;
+
+      border-bottom: 1px solid var(--line-hover);
+
+      padding-bottom: 7px;
+
+      transition:
+        color .2s ease,
+        border-color .2s ease;
+    }
+
+    .contact-link:hover {
+      color: var(--text);
+      border-color: var(--text);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      min-height: 100px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-brand {
+      color: var(--muted);
+
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 3px;
+    }
+
+    .footer-copy {
+      color: var(--dim);
+
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    /* =========================
+       REVEAL
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+
+      transition:
+        opacity .7s ease,
+        transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      body {
+        cursor: auto;
+      }
+
+      #cursor,
+      #cursor-trail {
+        display: none;
+      }
+
+      .container {
+        width: min(
+          calc(100% - 36px),
+          var(--max-width)
+        );
+      }
+
+      header {
+        position: relative;
+      }
+
+      .nav {
+        min-height: 68px;
+      }
+
+      nav {
+        gap: 15px;
+      }
+
+      nav a {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 110px 0 130px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero-description {
+        font-size: 13px;
+      }
+
+      .scroll-indicator {
+        display: none;
+      }
+
+      .section {
+        padding: 90px 0;
+      }
+
+      .section-header {
+        display: block;
+        margin-bottom: 40px;
+      }
+
+      .section-intro {
+        margin-top: 20px;
+      }
+
+      .who-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .who-main {
+        padding: 40px 0;
+
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .who-side {
+        padding: 30px 0;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .project {
+        min-height: 330px;
+      }
+
+      .contact {
+        min-height: 430px;
+      }
+
+      .footer-inner {
+        min-height: 130px;
+
+        align-items: flex-start;
+        justify-content: center;
+
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      nav a:nth-child(3) {
+        display: none;
+      }
+
+      .logo {
+        font-size: 11px;
+        letter-spacing: 3px;
+      }
+
+      .hero h1 {
+        font-size: 45px;
+      }
+
+      .hero-meta {
+        margin-top: 35px;
+      }
+
+      .project {
+        min-height: 360px;
+        padding: 25px;
+      }
+
+      .project-content {
+        left: 25px;
+        right: 25px;
+        bottom: 25px;
+      }
+
+      .project h3 {
+        font-size: 38px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div id="cursor"></div>
-<div id="cursor-trail"></div>
+  <div id="cursor"></div>
+  <div id="cursor-trail"></div>
 
-<header>
-  <div class="logo">WEIRD STUFF</div>
+  <!-- HEADER -->
 
-  <nav>
-    <a href="#who">WHO ARE?</a>
-    <a href="#projects">PROJECTS</a>
-    <a href="#contact">CONTACT</a>
-  </nav>
-</header>
+  <header>
+    <div class="container nav">
 
-<div class="hero">
-  <h1 id="hero-text"></h1>
-</div>
+      <a class="logo" href="#">
+        <span class="logo-mark"></span>
+        WEIRD STUFF
+      </a>
 
-<section id="who">
-  <h2>WHO ARE?</h2>
-  <br>
-  <p>We're Weird Stuff.</p>
-  <p>We make software.</p>
-  <p>Sometimes because we need it.</p>
-  <p>Sometimes because we can.</p>
-</section>
+      <nav>
+        <a href="#who">WHO ARE?</a>
+        <a href="#projects">PROJECTS</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
 
-<section id="projects">
+    </div>
+  </header>
 
-  <h2>PROJECTS</h2>
-  <br>
 
-  <div class="project">
-    <h2>Monix</h2>
-    <p class="sub">ALL IN ONE SYSTEM SUITE</p>
-    <a class="btn" href="/Apps/Monix.web/">OPEN</a>
-  </div>
+  <main>
 
-  <div class="project">
-    <h2>Meat</h2>
-    <p class="sub">WORK IN PROGRESS</p>
-    <a class="btn" href="/Apps/Meat/">OPEN</a>
-  </div>
+    <!-- HERO -->
 
-  <div class="project">
-    <h2>Telenet</h2>
-    <p class="sub">COMMUNICATION & NETWORK SYSTEMS</p>
-    <a class="btn" href="/docs/Apps/Telenet/Index.html">OPEN</a>
-  </div>
+    <section class="hero">
 
-</section>
+      <div class="hero-grid"></div>
 
-<section id="contact">
-  <h2>CONTACT</h2>
-  <br>
-  <p>Discord Server</p>
-  <p>orimuri12yt@gmail.com</p>
-</section>
+      <div class="container">
 
-<footer>
-  © 2026 Weird Stuff
-</footer>
+        <div class="hero-content reveal">
 
-<script>
-const cur = document.getElementById('cursor');
-const trail = document.getElementById('cursor-trail');
+          <div class="eyebrow">
+            Independent software studio
+          </div>
 
-let mx = 0;
-let my = 0;
+          <h1>
+            We got bored
+            <br>
+            <span>so we built things.</span>
+          </h1>
 
-document.addEventListener('mousemove', e => {
-  mx = e.clientX;
-  my = e.clientY;
+          <p class="hero-description">
+            Weird Stuff is a small independent studio focused on
+            software, systems and experimental technology.
+            We build things because they should exist.
+          </p>
 
-  cur.style.left = mx + 'px';
-  cur.style.top = my + 'px';
-});
+          <div class="hero-meta">
 
-setInterval(() => {
-  trail.style.left = mx + 'px';
-  trail.style.top = my + 'px';
-}, 80);
+            <div class="status">
+              <span class="status-dot"></span>
+              SYSTEMS ONLINE
+            </div>
 
-const lines = [
-  "We got bored",
-  "and we decided",
-  "to make these things."
-];
+            <div class="status">
+              2026 / WEIRD STUFF
+            </div>
 
-const el = document.getElementById('hero-text');
+          </div>
 
-let li = 0;
-let ci = 0;
-let text = '';
+        </div>
 
-function type(){
-  if(li >= lines.length){
-    el.innerHTML = text.replace(/\n/g,'<br>');
-    return;
-  }
+      </div>
 
-  if(ci < lines[li].length){
-    text += lines[li][ci++];
-  }else{
-    text += '\n';
-    li++;
-    ci = 0;
-  }
+      <div class="scroll-indicator">
+        SCROLL TO EXPLORE
+      </div>
 
-  el.innerHTML = text.replace(/\n/g,'<br>');
-  setTimeout(type,40);
-}
+    </section>
 
-setTimeout(type,400);
-</script>
+
+    <!-- WHO -->
+
+    <section class="section" id="who">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div>
+            <div class="section-number">
+              01 / WHO ARE?
+            </div>
+
+            <h2 class="section-title">
+              The idea
+            </h2>
+          </div>
+
+          <p class="section-intro">
+            No massive corporation. No unnecessary complexity.
+            Just people building software and figuring things out.
+          </p>
+
+        </div>
+
+
+        <div class="who-grid reveal">
+
+          <div class="who-main">
+
+            <p>We're Weird Stuff.</p>
+            <p>We make software.</p>
+            <p>We build systems.</p>
+            <p>We experiment.</p>
+
+          </div>
+
+
+          <div class="who-side">
+
+            <div>
+
+              <div class="info-row">
+                <span>TYPE</span>
+                <span>INDEPENDENT</span>
+              </div>
+
+              <div class="info-row">
+                <span>FOCUS</span>
+                <span>SOFTWARE / SYSTEMS</span>
+              </div>
+
+              <div class="info-row">
+                <span>STATUS</span>
+                <span>ACTIVE</span>
+              </div>
+
+              <div class="info-row">
+                <span>EST.</span>
+                <span>2026</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+
+    <section class="section" id="projects">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div>
+            <div class="section-number">
+              02 / PROJECTS
+            </div>
+
+            <h2 class="section-title">
+              Things we built
+            </h2>
+          </div>
+
+          <p class="section-intro">
+            A collection of current projects, tools and systems
+            developed under Weird Stuff.
+          </p>
+
+        </div>
+
+
+        <div class="projects">
+
+
+          <!-- MONIX -->
+
+          <article class="project reveal">
+
+            <div class="project-index">
+              PROJECT / 001
+            </div>
+
+            <div class="project-content">
+
+              <h3>Monix</h3>
+
+              <p class="project-description">
+                An all in one system suite focused on monitoring,
+                diagnostics, security and low level system analysis.
+              </p>
+
+              <div class="project-footer">
+
+                <span class="project-status">
+                  ACTIVE DEVELOPMENT
+                </span>
+
+                <a
+                  class="project-button"
+                  href="/Apps/Monix.web/"
+                >
+                  OPEN
+                  <span>→</span>
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- MEAT -->
+
+          <article class="project reveal">
+
+            <div class="project-index">
+              PROJECT / 002
+            </div>
+
+            <div class="project-content">
+
+              <h3>Meat</h3>
+
+              <p class="project-description">
+                A work in progress project exploring custom
+                software architecture, rendering and interactive systems.
+              </p>
+
+              <div class="project-footer">
+
+                <span class="project-status">
+                  WORK IN PROGRESS
+                </span>
+
+                <a
+                  class="project-button"
+                  href="/Apps/Meat/"
+                >
+                  OPEN
+                  <span>→</span>
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- TELENET -->
+
+          <article class="project reveal">
+
+            <div class="project-index">
+              PROJECT / 003
+            </div>
+
+            <div class="project-content">
+
+              <h3>Telenet</h3>
+
+              <p class="project-description">
+                Communication and network systems designed
+                around experimentation, connectivity and infrastructure.
+              </p>
+
+              <div class="project-footer">
+
+                <span class="project-status">
+                  ACTIVE
+                </span>
+
+                <a
+                  class="project-button"
+                  href="/docs/Apps/Telenet/Index.html"
+                >
+                  OPEN
+                  <span>→</span>
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- MORE -->
+
+          <article class="project reveal">
+
+            <div class="project-index">
+              PROJECT / 004
+            </div>
+
+            <div class="project-content">
+
+              <h3>More</h3>
+
+              <p class="project-description">
+                More projects are being developed behind the scenes.
+                Some will be released. Some probably shouldn't be.
+              </p>
+
+              <div class="project-footer">
+
+                <span class="project-status">
+                  IN DEVELOPMENT
+                </span>
+
+                <span class="project-button">
+                  SOON
+                </span>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section class="section contact" id="contact">
+
+      <div class="container reveal">
+
+        <div class="contact-label">
+          03 / CONTACT
+        </div>
+
+        <h2>
+          Got something weird
+          to build?
+        </h2>
+
+        <a
+          class="contact-link"
+          href="mailto:orimuri12yt@gmail.com"
+        >
+          orimuri12yt@gmail.com →
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <div class="footer-brand">
+        WEIRD STUFF
+      </div>
+
+      <div class="footer-copy">
+        © 2026 WEIRD STUFF / ALL SYSTEMS OPERATIONAL
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+    /*
+      ============================
+      CUSTOM CURSOR
+      ============================
+    */
+
+    const cursor = document.getElementById("cursor");
+    const trail = document.getElementById("cursor-trail");
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    let trailX = 0;
+    let trailY = 0;
+
+    document.addEventListener("mousemove", (event) => {
+
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+
+      cursor.style.left = `${mouseX}px`;
+      cursor.style.top = `${mouseY}px`;
+
+    });
+
+
+    function animateTrail() {
+
+      trailX += (mouseX - trailX) * 0.16;
+      trailY += (mouseY - trailY) * 0.16;
+
+      trail.style.left = `${trailX}px`;
+      trail.style.top = `${trailY}px`;
+
+      requestAnimationFrame(animateTrail);
+    }
+
+    animateTrail();
+
+
+    /*
+      ============================
+      INTERACTIVE ELEMENTS
+      ============================
+    */
+
+    const interactiveElements = document.querySelectorAll(
+      "a, button, .project"
+    );
+
+    interactiveElements.forEach((element) => {
+
+      element.addEventListener("mouseenter", () => {
+        document.body.classList.add("cursor-active");
+      });
+
+      element.addEventListener("mouseleave", () => {
+        document.body.classList.remove("cursor-active");
+      });
+
+    });
+
+
+    /*
+      ============================
+      SCROLL REVEAL
+      ============================
+    */
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach((entry) => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add("visible");
+
+            revealObserver.unobserve(entry.target);
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+
+    /*
+      ============================
+      HERO LOAD
+      ============================
+    */
+
+    window.addEventListener("load", () => {
+
+      document
+        .querySelector(".hero-content")
+        ?.classList.add("visible");
+
+    });
+  </script>
 
 </body>
 </html>
