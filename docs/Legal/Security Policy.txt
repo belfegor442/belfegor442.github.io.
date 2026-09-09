@@ -1,0 +1,802 @@
+WEIRD STUFF
+SECURITY POLICY
+
+Version: 1.0
+Status: DRAFT FOR INTERNAL APPROVAL
+Publication Status: INTERNAL
+Effective Date: PENDING
+Last Updated: PENDING
+Owner: Weird Stuff
+
+============================================================
+
+1. PURPOSE
+   ============================================================
+
+This Security Policy establishes the security requirements and
+general security framework applicable to Weird Stuff systems,
+products, infrastructure, accounts, repositories, information,
+and internal operations.
+
+The purpose of this Policy is to protect:
+
+* Weird Stuff systems.
+* Products and source code.
+* Internal information.
+* User information.
+* Credentials and secrets.
+* Infrastructure.
+* Availability and integrity of services.
+* Members and authorized collaborators.
+
+============================================================
+2. SCOPE
+========
+
+This Policy applies to:
+
+* Weird Stuff personnel and collaborators.
+* Internal accounts.
+* Development environments.
+* Production environments.
+* Source code repositories.
+* Infrastructure.
+* Corporate communication systems.
+* Product distribution systems.
+* Credentials and secrets.
+* Systems used to process or store sensitive information.
+
+[MANDATORY]
+
+Any person granted access to Weird Stuff resources must follow
+the security requirements applicable to that access.
+
+============================================================
+3. SECURITY PRINCIPLES
+======================
+
+Weird Stuff follows these general principles:
+
+* Least privilege.
+* Need-to-know access.
+* Defense in depth.
+* Secure configuration.
+* Separation of environments.
+* Traceability of important actions.
+* Protection of credentials.
+* Timely response to incidents.
+
+[MANDATORY]
+
+Security controls must not intentionally be bypassed without
+proper authorization.
+
+============================================================
+4. ACCESS CONTROL
+=================
+
+[MANDATORY]
+
+Access must only be granted where there is a legitimate
+operational reason.
+
+[MANDATORY]
+
+Permissions must be limited to the minimum reasonably necessary.
+
+[MANDATORY]
+
+Administrative privileges must be restricted to authorized
+persons.
+
+[MANDATORY]
+
+Access must be revoked when it is no longer required.
+
+[RECOMMENDED]
+
+Access to critical systems should be reviewed periodically.
+
+============================================================
+5. ACCOUNTS
+===========
+
+[MANDATORY]
+
+Where technically possible, each person must use an individual
+account.
+
+[MANDATORY]
+
+Account credentials must not knowingly be shared.
+
+[MANDATORY]
+
+Users must not knowingly allow another person to use their
+authenticated account.
+
+[MANDATORY]
+
+Default passwords must be changed when applicable.
+
+[RECOMMENDED]
+
+Critical accounts should use multi-factor authentication.
+
+============================================================
+6. PASSWORDS AND AUTHENTICATION
+===============================
+
+[MANDATORY]
+
+Passwords must be sufficiently protected against unauthorized
+disclosure.
+
+[MANDATORY]
+
+Passwords must not be stored in plain text where secure
+credential storage is technically available.
+
+[MANDATORY]
+
+A compromised or suspected-compromised password must be changed
+or invalidated as soon as reasonably possible.
+
+[RECOMMENDED]
+
+Unique passwords should be used for important accounts.
+
+[RECOMMENDED]
+
+A trusted password manager should be used for administrative
+credentials where available.
+
+============================================================
+7. API KEYS, TOKENS, AND SECRETS
+================================
+
+Secrets include:
+
+* API keys.
+* Access tokens.
+* Private keys.
+* Signing keys.
+* Passwords.
+* Database credentials.
+* Service credentials.
+* Authentication secrets.
+
+[MANDATORY]
+
+Secrets must not intentionally be committed to public
+repositories.
+
+[MANDATORY]
+
+Secrets must not be unnecessarily distributed through chat,
+public documents, screenshots, or other exposed channels.
+
+[MANDATORY]
+
+Suspected compromised secrets must be rotated, revoked, or
+otherwise secured.
+
+[RECOMMENDED]
+
+Secrets should be stored using dedicated secret-management
+systems when practical.
+
+============================================================
+8. SOURCE CODE SECURITY
+=======================
+
+[MANDATORY]
+
+Source code must be stored in authorized repositories.
+
+[MANDATORY]
+
+Access to private repositories must be limited to authorized
+persons.
+
+[MANDATORY]
+
+Security-sensitive code must be reviewed before release where
+the available team structure permits.
+
+[MANDATORY]
+
+Known critical vulnerabilities in production code must be
+evaluated and addressed appropriately.
+
+[RECOMMENDED]
+
+Automated security analysis should be used where practical.
+
+============================================================
+9. DEPENDENCY SECURITY
+======================
+
+[MANDATORY]
+
+Third-party dependencies must be identifiable for important
+products.
+
+[MANDATORY]
+
+Dependencies must be obtained from reasonably trustworthy
+sources.
+
+[MANDATORY]
+
+Known severe security issues in dependencies must be assessed.
+
+[MANDATORY]
+
+Software licenses must be respected.
+
+[RECOMMENDED]
+
+Dependency update and vulnerability monitoring should be
+automated where practical.
+
+============================================================
+10. DEVELOPMENT ENVIRONMENTS
+============================
+
+[MANDATORY]
+
+Development environments must not unnecessarily contain
+production credentials or sensitive production data.
+
+[MANDATORY]
+
+Production credentials must not be reused for ordinary
+development when separate credentials are technically possible.
+
+[RECOMMENDED]
+
+Development, testing, and production environments should be
+separated.
+
+============================================================
+11. PRODUCTION ACCESS
+=====================
+
+[MANDATORY]
+
+Production access must be limited to authorized personnel.
+
+[MANDATORY]
+
+Production systems must not be modified without an appropriate
+operational reason.
+
+[MANDATORY]
+
+Security-sensitive production changes must be traceable where
+technically possible.
+
+[RECOMMENDED]
+
+Production administrative access should use stronger
+authentication and logging controls than ordinary access.
+
+============================================================
+12. INFRASTRUCTURE SECURITY
+===========================
+
+[MANDATORY]
+
+Critical infrastructure must use reasonable security controls
+appropriate to its function.
+
+These may include:
+
+* Authentication.
+* Authorization.
+* Network controls.
+* System hardening.
+* Logging.
+* Monitoring.
+* Backups.
+* Patch management.
+
+[PENDING]
+
+Detailed infrastructure architecture:
+
+---
+
+[PENDING]
+
+Server providers:
+
+---
+
+[PENDING]
+
+Hosting locations:
+
+---
+
+============================================================
+13. SOFTWARE UPDATES
+====================
+
+[MANDATORY]
+
+Operating systems, infrastructure software, and critical
+dependencies must be updated when security updates are necessary
+and reasonably available.
+
+[MANDATORY]
+
+Known high-risk vulnerabilities must not be knowingly ignored
+without an assessed reason.
+
+[RECOMMENDED]
+
+Critical security updates should be prioritized over non-critical
+maintenance.
+
+============================================================
+14. LOGGING AND MONITORING
+==========================
+
+[MANDATORY]
+
+Important security events should be recorded where technically
+necessary and legally appropriate.
+
+Possible events include:
+
+* Authentication events.
+* Administrative actions.
+* Security alerts.
+* Configuration changes.
+* Failed access attempts.
+* Significant application errors.
+
+[MANDATORY]
+
+Security logs must not be publicly exposed without authorization.
+
+[PENDING]
+
+Logging retention requirements:
+
+---
+
+============================================================
+15. MALWARE PROTECTION
+======================
+
+[MANDATORY]
+
+Software or infrastructure must not knowingly be configured to
+facilitate unauthorized malware deployment.
+
+[MANDATORY]
+
+Suspected malicious software must be isolated, investigated, and
+removed or contained where appropriate.
+
+[RECOMMENDED]
+
+Development and production systems should use appropriate
+malware and endpoint protections where available.
+
+============================================================
+16. VULNERABILITY MANAGEMENT
+============================
+
+[MANDATORY]
+
+Known vulnerabilities affecting Weird Stuff systems must be
+evaluated according to their severity and potential impact.
+
+A vulnerability may be classified as:
+
+* Critical.
+* High.
+* Medium.
+* Low.
+
+[MANDATORY]
+
+Critical security vulnerabilities must be prioritized.
+
+[RECOMMENDED]
+
+A vulnerability tracking system should be maintained for
+important products.
+
+============================================================
+17. SECURITY REPORTING
+======================
+
+[MANDATORY]
+
+Any person who becomes aware of a potentially serious security
+incident should report it through an authorized channel as soon
+as reasonably possible.
+
+[PENDING]
+
+Official security reporting channel:
+
+---
+
+============================================================
+18. SECURITY INCIDENT RESPONSE
+==============================
+
+Security incidents should follow the general sequence:
+
+1. Detection.
+2. Assessment.
+3. Containment.
+4. Eradication.
+5. Recovery.
+6. Verification.
+7. Documentation.
+8. Preventive action.
+
+[MANDATORY]
+
+Reasonable measures must be taken to limit the impact of a
+confirmed serious security incident.
+
+[MANDATORY]
+
+Relevant evidence should not be intentionally destroyed when
+preserving it is necessary for investigation or legal compliance.
+
+[RECOMMENDED]
+
+Significant incidents should receive a post-incident review.
+
+============================================================
+19. ACCOUNT COMPROMISE
+======================
+
+If an account is suspected of compromise:
+
+[MANDATORY]
+
+The responsible team should, as appropriate:
+
+* Restrict access.
+* Reset credentials.
+* Revoke sessions.
+* Revoke tokens.
+* Review relevant activity.
+* Restore secure access.
+* Assess potential impact.
+
+[MANDATORY]
+
+A compromised account must not continue to be used normally
+while the compromise remains unresolved.
+
+============================================================
+20. DATA PROTECTION
+===================
+
+[MANDATORY]
+
+Personal and sensitive information must receive appropriate
+protection.
+
+[MANDATORY]
+
+Access to such information must be limited according to
+operational need.
+
+[MANDATORY]
+
+Sensitive information must not be disclosed publicly without
+authorization and a lawful basis where applicable.
+
+The detailed processing requirements are defined in the
+Privacy Policy.
+
+============================================================
+21. BACKUPS
+===========
+
+[MANDATORY]
+
+Critical information must have reasonable recovery mechanisms
+where technically possible.
+
+[RECOMMENDED]
+
+Important backups should:
+
+* Be separated from the primary system.
+* Be access-controlled.
+* Be protected against accidental deletion.
+* Be tested for recoverability.
+
+[PENDING]
+
+Backup architecture:
+
+---
+
+============================================================
+22. DISASTER RECOVERY
+=====================
+
+[MANDATORY]
+
+Weird Stuff must maintain reasonable capabilities to recover
+critical systems from significant failures where technically
+possible.
+
+Potential scenarios include:
+
+* Infrastructure failure.
+* Repository loss.
+* Credential compromise.
+* Data corruption.
+* Provider outage.
+* Security incident.
+
+[RECOMMENDED]
+
+Recovery procedures should be documented and periodically tested.
+
+============================================================
+23. THIRD-PARTY SECURITY
+========================
+
+[MANDATORY]
+
+Third-party services with significant access to Weird Stuff
+systems or information must be considered from a security
+perspective before use.
+
+[MANDATORY]
+
+Third parties must not receive unnecessary access.
+
+[RECOMMENDED]
+
+Critical providers should be periodically reviewed.
+
+============================================================
+24. PHYSICAL SECURITY
+=====================
+
+Where Weird Stuff operates or stores systems in physical
+locations:
+
+[MANDATORY]
+
+Reasonable measures must be taken to prevent unauthorized
+physical access to critical systems and storage.
+
+[PENDING]
+
+Physical infrastructure requirements depend on the actual
+hosting and equipment model used by Weird Stuff.
+
+============================================================
+25. SECURITY OF RELEASES
+========================
+
+[MANDATORY]
+
+Published software must be distributed through authorized
+channels.
+
+[MANDATORY]
+
+Release artifacts must not knowingly be altered after release
+without appropriate version control.
+
+[MANDATORY]
+
+Automatic update systems must use reasonable integrity and
+authenticity protections.
+
+[RECOMMENDED]
+
+Release signing should be implemented for important products
+where technically possible.
+
+============================================================
+26. SECURE DEVELOPMENT
+======================
+
+[MANDATORY]
+
+Security must be considered during the design and development
+of products that process sensitive information or expose
+security-relevant functionality.
+
+[RECOMMENDED]
+
+Security reviews should be performed before major releases.
+
+[RECOMMENDED]
+
+Security testing should include, where appropriate:
+
+* Authentication testing.
+* Authorization testing.
+* Input validation.
+* Dependency analysis.
+* Configuration review.
+* Abuse-case testing.
+
+============================================================
+27. SECURITY EXCEPTIONS
+=======================
+
+[MANDATORY]
+
+A deviation from a mandatory security requirement must be
+authorized by an appropriate authority.
+
+[MANDATORY]
+
+A security exception must not be treated as permanent unless
+the underlying policy is formally changed.
+
+[RECOMMENDED]
+
+Significant security exceptions should be documented.
+
+============================================================
+28. SECURITY RESPONSIBILITIES
+=============================
+
+Security responsibilities follow the existing organizational
+structure.
+
+CEO:
+Overall executive authority.
+
+Director:
+Operational oversight.
+
+Manager:
+Operational coordination.
+
+Specialized teams:
+Security responsibilities within their technical or operational
+areas.
+
+[MANDATORY]
+
+Every person with access to Weird Stuff systems is responsible
+for following the security requirements applicable to their
+role.
+
+============================================================
+29. SECURITY AWARENESS
+======================
+
+[RECOMMENDED]
+
+People with access to critical systems should receive basic
+security guidance concerning:
+
+* Credential protection.
+* Phishing.
+* Social engineering.
+* Account security.
+* Secure handling of information.
+* Incident reporting.
+
+============================================================
+30. SECURITY AUDITS AND REVIEWS
+===============================
+
+[RECOMMENDED]
+
+Security controls should periodically be reviewed.
+
+Reviews may include:
+
+* Account permissions.
+* Credentials.
+* Dependencies.
+* Vulnerabilities.
+* Infrastructure.
+* Backups.
+* Logs.
+* Release mechanisms.
+
+[MANDATORY]
+
+Critical security problems identified during a review must be
+communicated to the appropriate authority.
+
+============================================================
+31. PUBLIC DISCLOSURE
+=====================
+
+[MANDATORY]
+
+Internal security architecture, credentials, private keys,
+security configurations, private infrastructure information,
+and other sensitive security information must not be publicly
+disclosed without authorization.
+
+[MANDATORY]
+
+Public security statements must not knowingly misrepresent the
+security properties of a Weird Stuff product or service.
+
+============================================================
+32. RELATIONSHIP WITH OTHER POLICIES
+====================================
+
+This Policy complements:
+
+* Manual Corporativo.
+* Terms and Conditions.
+* Privacy Policy.
+* Cookie Policy.
+* Acceptable Use Policy.
+* Intellectual Property Policy.
+* Custom Applications Policy.
+
+[MANDATORY]
+
+Where these documents address the same subject, they must be
+interpreted consistently.
+
+Applicable law takes precedence over internal policies.
+
+============================================================
+33. POLICY REVIEW
+=================
+
+[MANDATORY]
+
+This Policy must be reviewed when:
+
+* Major infrastructure changes occur.
+* A significant security incident occurs.
+* Major products are introduced.
+* Security requirements materially change.
+* Internal organizational responsibilities change.
+
+[RECOMMENDED]
+
+A periodic general review should also be performed.
+
+============================================================
+34. DOCUMENT CONTROL
+====================
+
+Document:
+WEIRD STUFF — SECURITY POLICY
+
+Version:
+1.0
+
+Status:
+DRAFT FOR INTERNAL APPROVAL
+
+Publication:
+INTERNAL
+
+Effective Date:
+PENDING
+
+Last Updated:
+PENDING
+
+Owner:
+Weird Stuff
+
+============================================================
+END OF DOCUMENT
+===============

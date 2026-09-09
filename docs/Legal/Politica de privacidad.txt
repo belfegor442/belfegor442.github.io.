@@ -1,0 +1,823 @@
+WEIRD STUFF
+PRIVACY POLICY
+
+Version: 1.0
+Status: DRAFT FOR LEGAL REVIEW
+Publication Status: PENDING
+Effective Date: PENDING
+Last Updated: PENDING
+Owner: Weird Stuff
+
+============================================================
+
+1. PURPOSE
+   ============================================================
+
+This Privacy Policy explains how Weird Stuff ("Weird Stuff",
+"we", "us", or "our") may collect, use, store, disclose, and
+otherwise process personal data in connection with its websites,
+applications, software, services, support channels, and other
+products to which this Privacy Policy applies.
+
+Weird Stuff aims to process personal data lawfully, fairly, and
+transparently and to apply appropriate technical and organizational
+measures to protect it.
+
+This Privacy Policy must be read together with the applicable
+Terms and Conditions, Cookie Policy, and any product-specific
+privacy notices.
+
+============================================================
+2. DATA CONTROLLER
+==================
+
+The entity responsible for the processing of personal data is:
+
+[PENDING / RESERVED]
+
+Legal name:
+
+---
+
+Trading name:
+Weird Stuff
+
+Registered address:
+
+---
+
+Jurisdiction:
+
+---
+
+Contact address:
+
+---
+
+Privacy contact:
+
+---
+
+Data Protection Officer, where applicable:
+
+---
+
+============================================================
+3. APPLICABLE LAW
+=================
+
+[MANDATORY]
+
+Personal data must be processed in accordance with the data
+protection laws applicable to the relevant processing activity
+and the User.
+
+Where applicable, this may include the General Data Protection
+Regulation (EU) 2016/679 ("GDPR") and applicable national
+legislation.
+
+This Policy does not limit any mandatory rights granted to
+individuals by applicable law.
+
+============================================================
+4. PRINCIPLES OF PROCESSING
+===========================
+
+[MANDATORY]
+
+Weird Stuff will seek to apply the following principles to
+personal data processing:
+
+* Lawfulness, fairness, and transparency.
+* Purpose limitation.
+* Data minimization.
+* Accuracy.
+* Storage limitation.
+* Integrity and confidentiality.
+* Accountability.
+
+[MANDATORY]
+
+Personal data must not knowingly be collected or processed in a
+manner incompatible with the stated or legally permitted purpose.
+
+[MANDATORY]
+
+Only data reasonably necessary for the relevant purpose should be
+processed.
+
+These principles are consistent with the core requirements of the
+GDPR.
+
+============================================================
+5. CATEGORIES OF PERSONAL DATA
+==============================
+
+The exact categories of data processed depend on the service
+used by the User.
+
+Potential categories may include:
+
+* Name or display name.
+* Email address.
+* Account information.
+* Contact information.
+* User-provided content.
+* Technical information.
+* Device information.
+* IP address.
+* Authentication information.
+* Security and fraud-prevention information.
+* Support communications.
+* Error reports.
+* Usage information.
+* Information voluntarily submitted through forms or requests.
+
+[PENDING]
+
+The actual categories collected by each Weird Stuff service must
+be verified before publication.
+
+Weird Stuff must not state that it collects a category of data
+unless the relevant service actually collects it.
+
+============================================================
+6. HOW PERSONAL DATA IS COLLECTED
+=================================
+
+Personal data may be obtained:
+
+* Directly from the User.
+* Automatically through a website or application.
+* Through support or communication channels.
+* Through account registration.
+* Through custom application requests.
+* Through security or operational systems.
+* From service providers acting on behalf of Weird Stuff.
+* From other lawful sources where applicable.
+
+[PENDING]
+
+The actual collection methods for each product must be
+documented before publication.
+
+============================================================
+7. PURPOSES OF PROCESSING
+=========================
+
+Depending on the service, Weird Stuff may process personal data
+for purposes such as:
+
+* Providing requested services.
+* Creating and managing accounts.
+* Responding to support requests.
+* Delivering software or digital services.
+* Processing custom application requests.
+* Maintaining service functionality.
+* Security monitoring.
+* Preventing abuse and fraud.
+* Detecting and investigating security incidents.
+* Diagnosing technical problems.
+* Maintaining and improving services.
+* Meeting legal obligations.
+* Establishing, exercising, or defending legal claims where
+  permitted.
+* Communicating important service information.
+
+[MANDATORY]
+
+Personal data must not be processed for a materially incompatible
+purpose without an appropriate legal basis or other lawful
+authorization.
+
+============================================================
+8. LEGAL BASES
+==============
+
+Where GDPR or equivalent requirements apply, processing must rely
+on an appropriate legal basis.
+
+Potential legal bases may include:
+
+* Performance of a contract.
+* Compliance with a legal obligation.
+* Consent.
+* Legitimate interests.
+* Protection of vital interests.
+* Other legal bases applicable under the relevant legislation.
+
+[PENDING]
+
+The specific legal basis for each processing activity must be
+determined before publication.
+
+Weird Stuff must not claim that consent is the legal basis for a
+processing activity where another legal basis actually applies.
+
+============================================================
+9. CONSENT
+==========
+
+Where processing relies on consent:
+
+[MANDATORY]
+
+Consent must be obtained through an appropriate mechanism.
+
+[MANDATORY]
+
+The User must be able to withdraw consent where applicable.
+
+[MANDATORY]
+
+Withdrawal of consent must not affect the lawfulness of
+processing carried out before withdrawal.
+
+[PENDING]
+
+The exact consent mechanisms used by Weird Stuff must be
+documented.
+
+============================================================
+10. LEGITIMATE INTERESTS
+========================
+
+Where Weird Stuff relies on legitimate interests as a legal basis,
+the relevant processing must be assessed and balanced against the
+rights and interests of the affected individuals.
+
+[PENDING]
+
+The legitimate interests relied upon for each relevant processing
+activity must be documented before publication.
+
+============================================================
+11. DATA MINIMIZATION
+=====================
+
+[MANDATORY]
+
+Weird Stuff must seek to limit personal data collection and
+processing to what is necessary for the relevant purpose.
+
+[MANDATORY]
+
+Unnecessary personal data must not knowingly be collected merely
+because it is technically available.
+
+Data protection by default requires processing to be limited,
+by default, to what is necessary for the defined purpose.
+
+============================================================
+12. ACCURACY
+============
+
+[MANDATORY]
+
+Weird Stuff must take reasonable measures to maintain accurate
+personal data where accuracy is relevant to the processing.
+
+[MANDATORY]
+
+Users may request correction of inaccurate personal data where
+applicable.
+
+============================================================
+13. DATA RETENTION
+==================
+
+Personal data must not be retained indefinitely without an
+appropriate reason.
+
+[PENDING]
+
+Specific retention periods or retention criteria must be defined
+for each relevant category of data.
+
+Retention may depend on:
+
+* The purpose for which the data was collected.
+* Legal obligations.
+* Security requirements.
+* Account status.
+* Dispute or claim requirements.
+* Technical requirements.
+
+============================================================
+14. RECIPIENTS OF PERSONAL DATA
+===============================
+
+Personal data may be disclosed to or processed by:
+
+* Authorized Weird Stuff personnel.
+* Hosting providers.
+* Infrastructure providers.
+* Software providers.
+* Communication providers.
+* Security providers.
+* Analytics providers, where used.
+* Professional advisers, where necessary.
+* Public authorities where legally required.
+
+[PENDING]
+
+The actual recipients and categories of recipients must be
+identified before publication.
+
+[MANDATORY]
+
+Personal data must not be disclosed to third parties merely
+because doing so is technically convenient.
+
+============================================================
+15. DATA PROCESSORS
+===================
+
+Where a third party processes personal data on behalf of Weird
+Stuff, Weird Stuff must assess and manage the relationship in
+accordance with applicable law.
+
+[PENDING]
+
+The following must be documented where applicable:
+
+* Processor identity.
+* Processing purpose.
+* Categories of data.
+* Relevant contract or legal arrangement.
+* Sub-processors.
+* Security requirements.
+* Data location.
+
+Under the GDPR, controllers must use processors providing
+sufficient guarantees for appropriate technical and organizational
+measures.
+
+============================================================
+16. INTERNATIONAL DATA TRANSFERS
+================================
+
+Personal data may be processed or transferred outside the User's
+country or relevant legal jurisdiction when permitted by
+applicable law.
+
+[PENDING]
+
+Before publication, Weird Stuff must identify:
+
+* Whether international transfers occur.
+* Relevant countries.
+* Applicable transfer mechanism.
+* Applicable safeguards.
+* Relevant providers.
+
+Where applicable, international transfers must comply with the
+requirements of data protection law.
+
+============================================================
+17. SECURITY
+============
+
+[MANDATORY]
+
+Weird Stuff must implement technical and organizational measures
+appropriate to the risk associated with personal data processing.
+
+Possible measures may include:
+
+* Access controls.
+* Authentication controls.
+* Encryption where appropriate.
+* Credential protection.
+* Monitoring.
+* Backup mechanisms.
+* Vulnerability management.
+* Incident response.
+* Access limitation.
+
+The required level of security depends on the nature, scope,
+context, purposes, state of technology, costs, and risks of the
+processing.
+
+[MANDATORY]
+
+Access to personal data must be restricted according to
+legitimate operational need.
+
+============================================================
+18. DATA BREACHES AND SECURITY INCIDENTS
+========================================
+
+A personal data breach may include unauthorized access,
+disclosure, alteration, destruction, or loss of personal data.
+
+[MANDATORY]
+
+Weird Stuff must assess suspected personal data breaches and
+follow any notification or communication obligations imposed by
+applicable law.
+
+[MANDATORY]
+
+Security incidents involving personal data must be escalated
+through the appropriate internal process.
+
+============================================================
+19. USER RIGHTS
+===============
+
+Depending on applicable law, individuals may have rights including:
+
+* Right of access.
+* Right to rectification.
+* Right to erasure.
+* Right to restriction of processing.
+* Right to object.
+* Right to data portability.
+* Right to withdraw consent where consent is the legal basis.
+* Rights relating to automated decision-making and profiling,
+  where applicable.
+* Right to lodge a complaint with a competent supervisory
+  authority.
+
+The exact availability of each right depends on the applicable
+legal framework and circumstances. The AEPD identifies these rights
+as part of the information that should be provided to individuals.
+
+============================================================
+20. HOW TO EXERCISE RIGHTS
+==========================
+
+Users may exercise applicable data protection rights by contacting
+Weird Stuff through the designated privacy contact.
+
+[PENDING]
+
+Privacy request email:
+
+---
+
+Privacy request form:
+
+---
+
+Official privacy contact:
+
+---
+
+[MANDATORY]
+
+Requests must be handled in accordance with the applicable
+verification, response, and procedural requirements.
+
+Weird Stuff may request information reasonably necessary to verify
+the identity of the requester where permitted or required.
+
+============================================================
+21. SUPERVISORY AUTHORITY
+=========================
+
+Where GDPR or other applicable data protection law applies, a User
+may have the right to lodge a complaint with the competent data
+protection supervisory authority.
+
+[PENDING]
+
+The relevant supervisory authority must be identified according
+to the applicable legal structure and processing activities.
+
+============================================================
+22. AUTOMATED DECISION-MAKING AND PROFILING
+===========================================
+
+[PENDING]
+
+Weird Stuff must determine whether any service performs:
+
+* Automated decision-making.
+* Profiling.
+* Behavioral analysis.
+* Personalization based on personal data.
+
+If applicable, the relevant information and legal requirements
+must be included in this Policy or in an appropriate additional
+notice.
+
+============================================================
+23. CHILDREN AND MINORS
+=======================
+
+[PENDING]
+
+Weird Stuff must determine the age requirements and rules
+applicable to each product and service.
+
+Where services may be used by children or minors, Weird Stuff must
+apply the legal requirements relevant to the applicable service,
+jurisdiction, processing activity, and consent mechanism.
+
+============================================================
+24. USER-PROVIDED CONTENT
+=========================
+
+Where a Weird Stuff service permits Users to submit content:
+
+[MANDATORY]
+
+Users should avoid providing personal information that is not
+necessary for the intended purpose.
+
+[MANDATORY]
+
+Weird Stuff must process personal data contained in User-provided
+content only for lawful and relevant purposes.
+
+[PENDING]
+
+The exact processing of User-provided content must be documented
+for each applicable service.
+
+============================================================
+25. COMMUNICATIONS
+==================
+
+Weird Stuff may communicate with Users regarding:
+
+* Requested services.
+* Account activity.
+* Security matters.
+* Important product changes.
+* Support requests.
+* Legal or contractual matters.
+
+[PENDING]
+
+Marketing communications, if any, must be separately defined,
+including their legal basis and opt-out mechanisms where required.
+
+============================================================
+26. ANALYTICS
+=============
+
+[PENDING]
+
+Weird Stuff must determine whether analytics technologies are
+used.
+
+If analytics are used, the following must be documented:
+
+* Provider.
+* Data collected.
+* Purpose.
+* Legal basis.
+* Retention.
+* International transfers.
+* Cookie or tracking technology involved.
+
+============================================================
+27. LOGS AND TECHNICAL DATA
+===========================
+
+Software and infrastructure may generate technical logs required
+for security, troubleshooting, reliability, or operation.
+
+[PENDING]
+
+Weird Stuff must document:
+
+* What logs are generated.
+* Whether they contain personal data.
+* Their purpose.
+* Who can access them.
+* Retention period.
+* Security controls.
+
+============================================================
+28. ACCOUNT DELETION
+====================
+
+Where a service provides User accounts:
+
+[PENDING]
+
+The account deletion process must be defined.
+
+[MANDATORY]
+
+Deleting an account must not automatically imply that every item
+of information is immediately erased where Weird Stuff has a
+lawful reason or legal obligation to retain specific information.
+
+Any continued retention must remain subject to applicable law
+and the relevant retention requirements.
+
+============================================================
+29. LINKS TO THIRD-PARTY SERVICES
+=================================
+
+Weird Stuff services may contain links or integrations with
+third-party services.
+
+[MANDATORY]
+
+Third-party services are governed by their own privacy policies
+where applicable.
+
+[MANDATORY]
+
+Weird Stuff must not represent a third party's privacy practices
+as being its own.
+
+============================================================
+30. CHANGES TO THIS POLICY
+==========================
+
+Weird Stuff may update this Privacy Policy when necessary.
+
+[MANDATORY]
+
+The version and effective date must be identifiable.
+
+[MANDATORY]
+
+Material changes must be communicated through an appropriate
+mechanism where required by law.
+
+[PENDING]
+
+The final publication and notification mechanism must be defined.
+
+============================================================
+31. DATA PROTECTION BY DESIGN AND DEFAULT
+=========================================
+
+[MANDATORY]
+
+Where applicable, privacy and data protection considerations must
+be incorporated into the design of relevant products, services,
+and processing activities.
+
+[RECOMMENDED]
+
+New features involving personal data should be reviewed for
+privacy impact before implementation.
+
+The principle of data protection by default requires the initial
+configuration of processing to limit personal data to what is
+necessary for the defined purposes.
+
+============================================================
+32. RISK ASSESSMENT
+===================
+
+[MANDATORY]
+
+Weird Stuff must consider the risks that its processing activities
+may create for individuals.
+
+[RECOMMENDED]
+
+Higher-risk processing should receive a more detailed assessment
+before implementation.
+
+The AEPD explains that risk assessment must consider the nature,
+context, scope, and purposes of each processing activity rather
+than relying on a fixed closed list of risks.
+
+============================================================
+33. DATA PROTECTION OFFICER
+===========================
+
+[PENDING]
+
+Weird Stuff must determine whether the appointment of a Data
+Protection Officer is legally required for any of its processing
+activities.
+
+If required:
+
+DPO name:
+
+---
+
+DPO contact:
+
+---
+
+============================================================
+34. RECORDS OF PROCESSING ACTIVITIES
+====================================
+
+[PENDING]
+
+Weird Stuff must determine whether a Record of Processing
+Activities is required and, where applicable, maintain the
+appropriate record.
+
+The record should identify relevant processing activities,
+purposes, categories of data, recipients, retention, transfers,
+and security information as required by applicable law.
+
+============================================================
+35. LEGAL AND INTERNAL RESPONSIBILITY
+=====================================
+
+This Privacy Policy describes Weird Stuff's intended privacy
+framework and must accurately reflect actual processing.
+
+[MANDATORY]
+
+Weird Stuff must not publish claims about data collection,
+retention, security, transfers, analytics, or third-party
+processing that do not correspond to its actual operations.
+
+[MANDATORY]
+
+Whenever a material processing activity changes, this Policy must
+be reviewed and updated where necessary.
+
+============================================================
+36. CONTACT
+===========
+
+For privacy-related questions or requests:
+
+Weird Stuff
+
+Privacy contact:
+
+---
+
+Email:
+
+---
+
+Website:
+
+---
+
+Additional contact method:
+
+---
+
+============================================================
+37. DOCUMENT CONTROL
+====================
+
+Document:
+WEIRD STUFF — PRIVACY POLICY
+
+Version:
+1.0
+
+Status:
+DRAFT FOR LEGAL REVIEW
+
+Publication:
+PENDING
+
+Effective Date:
+PENDING
+
+Last Updated:
+PENDING
+
+Owner:
+Weird Stuff
+
+============================================================
+38. PUBLICATION CHECKLIST
+=========================
+
+Before this Privacy Policy is published, the following information
+must be verified:
+
+* Legal identity of the controller.
+* Contact details.
+* Actual products covered.
+* Actual categories of personal data.
+* Collection methods.
+* Processing purposes.
+* Legal basis for each processing activity.
+* Retention periods or criteria.
+* Recipients.
+* Processors.
+* Sub-processors where relevant.
+* International transfers.
+* Security measures at the appropriate level of detail.
+* Rights request procedure.
+* Supervisory authority.
+* Automated decision-making or profiling.
+* Children's / minors' requirements.
+* Analytics.
+* Logs and technical data.
+* Account deletion process.
+* Cookies and tracking technologies.
+* DPO requirement.
+* Record of Processing Activities requirement.
+* Effective date.
+* Publication mechanism.
+
+============================================================
+END OF DOCUMENT
+===============

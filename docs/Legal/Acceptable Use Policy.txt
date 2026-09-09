@@ -1,0 +1,611 @@
+WEIRD STUFF
+ACCEPTABLE USE POLICY
+
+Version: 1.0
+Status: DRAFT FOR LEGAL REVIEW
+Publication Status: PENDING
+Effective Date: PENDING
+Last Updated: PENDING
+Owner: Weird Stuff
+
+============================================================
+
+1. PURPOSE
+   ============================================================
+
+This Acceptable Use Policy ("AUP") establishes the rules governing
+the acceptable use of Weird Stuff products, applications, websites,
+services, infrastructure, communication channels, and other
+resources covered by this Policy.
+
+The purpose of this Policy is to protect Users, Weird Stuff,
+third parties, infrastructure, intellectual property, and the
+availability and security of Weird Stuff services.
+
+============================================================
+2. SCOPE
+========
+
+This Policy applies to Users and other persons using a Weird Stuff
+service where the service refers to this Policy.
+
+It may apply to:
+
+* Applications.
+* Software.
+* Websites.
+* Digital services.
+* Accounts.
+* APIs.
+* Custom applications.
+* Communication systems.
+* Community spaces operated by Weird Stuff.
+* Other resources explicitly designated by Weird Stuff.
+
+[PENDING]
+
+The exact services covered by this Policy must be identified
+before publication.
+
+============================================================
+3. GENERAL REQUIREMENTS
+=======================
+
+[MANDATORY]
+
+Users must:
+
+* Use Weird Stuff services lawfully.
+* Follow the applicable Terms and Conditions.
+* Respect the rights of other Users and third parties.
+* Respect security controls.
+* Use resources only for their intended purposes.
+* Provide accurate information where information is required.
+* Follow product-specific rules.
+
+[MANDATORY]
+
+Users must not deliberately misuse Weird Stuff systems,
+resources, accounts, or services.
+
+============================================================
+4. UNAUTHORIZED ACCESS
+======================
+
+[MANDATORY]
+
+Users must not:
+
+* Access another person's account without authorization.
+* Attempt to obtain credentials belonging to another person.
+* Circumvent authentication.
+* Bypass access controls.
+* Exploit security restrictions for unauthorized access.
+* Access systems or information without permission.
+* Maintain unauthorized access after discovering it.
+
+[MANDATORY]
+
+Possessing technical knowledge or discovering a vulnerability does
+not itself create authorization to access restricted systems.
+
+============================================================
+5. SECURITY TESTING AND VULNERABILITIES
+=======================================
+
+Security research must remain within the scope of any applicable
+authorization.
+
+[MANDATORY]
+
+Users must not knowingly exploit a vulnerability to:
+
+* Obtain unauthorized data.
+* Obtain credentials.
+* Damage systems.
+* Interrupt services.
+* Escalate privileges without authorization.
+* Establish persistent unauthorized access.
+* Harm another User.
+
+[RECOMMENDED]
+
+Security vulnerabilities should be reported through the official
+security reporting channel instead of being publicly disclosed
+before Weird Stuff has had a reasonable opportunity to respond.
+
+[PENDING]
+
+Official security reporting channel:
+
+---
+
+============================================================
+6. MALWARE AND MALICIOUS CODE
+=============================
+
+[MANDATORY]
+
+Users must not intentionally use Weird Stuff services to:
+
+* Distribute malware.
+* Deploy ransomware.
+* Distribute credential-stealing software.
+* Operate malicious payloads.
+* Distribute destructive code.
+* Create or distribute software intended to compromise systems.
+* Conceal malicious activity through Weird Stuff infrastructure.
+
+This restriction applies regardless of whether the target is
+Weird Stuff or a third party.
+
+============================================================
+7. FRAUD AND DECEPTION
+======================
+
+[MANDATORY]
+
+Users must not use Weird Stuff services for:
+
+* Fraud.
+* Credential theft.
+* Phishing.
+* Deliberate impersonation.
+* Identity deception.
+* Financial scams.
+* Social engineering intended to obtain unauthorized access,
+  credentials, money, or sensitive information.
+
+[MANDATORY]
+
+Users must not falsely represent themselves as an official
+representative of Weird Stuff.
+
+============================================================
+8. ABUSE OF INFRASTRUCTURE
+==========================
+
+[MANDATORY]
+
+Users must not intentionally:
+
+* Overload services.
+* Consume unreasonable resources through abuse.
+* Deliberately cause denial of service.
+* Interfere with infrastructure.
+* Circumvent resource limitations.
+* Use automated processes designed to impair service operation.
+* Deliberately generate excessive malicious traffic.
+
+[PENDING]
+
+Specific technical resource limits may be established for
+individual services.
+
+============================================================
+9. AUTOMATION AND SCRAPING
+==========================
+
+Automation may be permitted where a service supports it.
+
+[MANDATORY]
+
+Users must not use automation to:
+
+* Circumvent technical restrictions.
+* Evade security controls.
+* Flood services.
+* Harvest restricted information.
+* Circumvent rate limits.
+* Interfere with normal operation.
+* Obtain information that the User is not authorized to access.
+
+[PENDING]
+
+Where applicable, individual services may define API and
+automation-specific requirements.
+
+============================================================
+10. PRIVACY AND PERSONAL DATA
+=============================
+
+[MANDATORY]
+
+Users must not intentionally use Weird Stuff services to collect,
+expose, sell, distribute, or otherwise misuse another person's
+personal data without appropriate authorization or legal basis.
+
+[MANDATORY]
+
+Users must not publicly expose sensitive information obtained
+through Weird Stuff services for malicious or unauthorized
+purposes.
+
+[MANDATORY]
+
+Users must respect the Privacy Policy and applicable data
+protection requirements.
+
+============================================================
+11. INTELLECTUAL PROPERTY
+=========================
+
+[MANDATORY]
+
+Users must not knowingly use Weird Stuff services to infringe the
+intellectual property rights of others.
+
+This includes unauthorized use of:
+
+* Copyrighted material.
+* Trademarks.
+* Software.
+* Designs.
+* Digital assets.
+* Documentation.
+* Other protected material.
+
+[MANDATORY]
+
+Users must comply with applicable licenses when using third-party
+software or content.
+
+============================================================
+12. IMPERSONATION AND BRAND ABUSE
+=================================
+
+[MANDATORY]
+
+Users must not:
+
+* Impersonate Weird Stuff.
+* Pretend to be an authorized representative.
+* Create deceptive accounts intended to appear official.
+* Falsely claim a partnership with Weird Stuff.
+* Misuse Weird Stuff branding to deceive Users.
+
+[MANDATORY]
+
+Official communications must only be issued through authorized
+channels or by authorized representatives.
+
+============================================================
+13. HARASSMENT AND ABUSIVE CONDUCT
+==================================
+
+[MANDATORY]
+
+Users must not intentionally use Weird Stuff services to engage in
+serious harassment, threats, intimidation, or targeted abuse.
+
+[MANDATORY]
+
+Threats involving physical harm, credible criminal activity, or
+serious safety risks may be escalated through appropriate channels
+where permitted or required.
+
+============================================================
+14. ILLEGAL USE
+===============
+
+[MANDATORY]
+
+Weird Stuff services must not knowingly be used for activities
+that violate applicable law.
+
+Users remain responsible for ensuring that their use of Weird Stuff
+services is lawful in their relevant circumstances.
+
+============================================================
+15. CUSTOM APPLICATION REQUESTS
+===============================
+
+Custom application requests are subject to additional review.
+
+[MANDATORY]
+
+Users must not request that Weird Stuff knowingly create or
+provide software intended to facilitate:
+
+* Unauthorized access.
+* Malware distribution.
+* Credential theft.
+* Fraud.
+* Destructive attacks.
+* Illegal surveillance.
+* Abuse of third-party systems.
+* Other prohibited activity.
+
+[MANDATORY]
+
+Weird Stuff may reject requests that create unacceptable legal,
+security, operational, or technical risks.
+
+Additional requirements may be defined in the Custom Applications
+Policy.
+
+============================================================
+16. CONTENT
+===========
+
+Where Weird Stuff services permit Users to upload or submit
+content:
+
+[MANDATORY]
+
+Users must not intentionally submit content for purposes that
+violate applicable law or the applicable service rules.
+
+[MANDATORY]
+
+Users must not knowingly submit malware or malicious executable
+content where such content is prohibited by the service.
+
+[MANDATORY]
+
+Users must not use submission systems to attack, test, or disrupt
+the service without authorization.
+
+============================================================
+17. SECURITY CONTROLS
+=====================
+
+[MANDATORY]
+
+Users must not intentionally circumvent or disable security
+controls implemented to protect Weird Stuff services, accounts,
+data, or infrastructure.
+
+This includes, where applicable:
+
+* Authentication mechanisms.
+* Authorization checks.
+* Rate limits.
+* Access restrictions.
+* Integrity checks.
+* Update verification.
+* Security monitoring controls.
+
+============================================================
+18. ACCOUNT ABUSE
+=================
+
+[MANDATORY]
+
+Users must not create or operate accounts for abusive purposes.
+
+This includes:
+
+* Mass account creation intended to bypass restrictions.
+* Fake accounts used for fraud.
+* Accounts created to evade enforcement.
+* Credential sharing where prohibited.
+* Account trading where prohibited.
+* Deliberate use of compromised accounts.
+
+============================================================
+19. ENFORCEMENT
+===============
+
+Where legally and contractually permitted, Weird Stuff may take
+appropriate action when this Policy is violated.
+
+Possible actions may include:
+
+* Warning.
+* Restriction.
+* Temporary suspension.
+* Removal of specific functionality.
+* Account suspension.
+* Account termination.
+* Removal of prohibited content.
+* Blocking abusive activity.
+* Referral to another process or authority where appropriate.
+
+[MANDATORY]
+
+Enforcement should be proportionate to the circumstances and
+consistent with applicable law and contractual obligations.
+
+============================================================
+20. IMMEDIATE SECURITY MEASURES
+===============================
+
+Where there is a credible and significant threat to users,
+infrastructure, or service security:
+
+[MANDATORY]
+
+Weird Stuff may take immediate technical measures reasonably
+necessary to contain the threat, including temporary access
+restrictions or service isolation, subject to applicable law.
+
+Such measures do not automatically determine whether the User has
+violated this Policy.
+
+============================================================
+21. APPEALS
+===========
+
+[PENDING]
+
+Weird Stuff must determine whether suspended or restricted Users
+will have an appeal mechanism and, if so:
+
+* Appeal method.
+* Appeal deadline.
+* Required information.
+* Review process.
+* Final decision authority.
+
+============================================================
+22. REPORTING VIOLATIONS
+========================
+
+Users may report suspected violations through official channels.
+
+[PENDING]
+
+Abuse reporting channel:
+
+---
+
+Security reporting channel:
+
+---
+
+General support channel:
+
+---
+
+============================================================
+23. EVIDENCE AND INVESTIGATIONS
+===============================
+
+Where a violation is reasonably suspected:
+
+[MANDATORY]
+
+Weird Stuff may review information reasonably necessary to
+investigate the suspected violation, subject to applicable law,
+privacy requirements, and the relevant service's policies.
+
+[MANDATORY]
+
+Access to investigation information must be limited to persons
+who need it for the relevant purpose.
+
+[RECOMMENDED]
+
+Significant enforcement actions should be documented internally.
+
+============================================================
+24. THIRD-PARTY SYSTEMS
+=======================
+
+[MANDATORY]
+
+Users must not use Weird Stuff services to attack, disrupt,
+compromise, or gain unauthorized access to third-party systems.
+
+Authorization from a User does not automatically constitute
+authorization from the owner of a third-party system.
+
+============================================================
+25. RESPONSIBILITY FOR USE
+==========================
+
+Users are responsible for their own activity when using Weird
+Stuff services.
+
+[MANDATORY]
+
+Users must take reasonable steps to protect their accounts and
+credentials.
+
+[MANDATORY]
+
+Users must not knowingly permit their account to be used for
+prohibited activity.
+
+============================================================
+26. POLICY UPDATES
+==================
+
+Weird Stuff may update this Policy as services, risks, or
+requirements change.
+
+[MANDATORY]
+
+Material changes must be communicated through an appropriate
+mechanism where required.
+
+[MANDATORY]
+
+The current version must be identifiable by version number and
+effective date.
+
+============================================================
+27. RELATIONSHIP WITH OTHER DOCUMENTS
+=====================================
+
+This Policy supplements the Weird Stuff Terms and Conditions.
+
+The Privacy Policy governs the processing of personal data.
+
+The Cookie Policy governs applicable cookies and similar
+technologies.
+
+The Intellectual Property Policy governs intellectual property
+and licensing matters.
+
+The Security Policy establishes internal security requirements.
+
+The Custom Applications Policy governs custom software requests.
+
+[MANDATORY]
+
+These documents must be interpreted consistently where possible.
+
+============================================================
+28. LEGAL COMPLIANCE
+====================
+
+[MANDATORY]
+
+Nothing in this Policy is intended to remove rights or obligations
+that cannot legally be excluded.
+
+Where a provision of this Policy conflicts with mandatory
+applicable law, the applicable law takes precedence.
+
+============================================================
+29. CONTACT
+===========
+
+[PENDING]
+
+General contact:
+
+---
+
+Abuse contact:
+
+---
+
+Security contact:
+
+---
+
+Website:
+
+---
+
+============================================================
+30. DOCUMENT CONTROL
+====================
+
+Document:
+WEIRD STUFF — ACCEPTABLE USE POLICY
+
+Version:
+1.0
+
+Status:
+DRAFT FOR LEGAL REVIEW
+
+Publication:
+PENDING
+
+Effective Date:
+PENDING
+
+Last Updated:
+PENDING
+
+Owner:
+Weird Stuff
+
+============================================================
+END OF DOCUMENT
+===============

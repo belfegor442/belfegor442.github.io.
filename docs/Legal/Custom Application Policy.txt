@@ -1,0 +1,716 @@
+WEIRD STUFF
+CUSTOM APPLICATIONS POLICY
+
+Version: 1.0
+Status: DRAFT FOR LEGAL REVIEW
+Publication Status: PENDING
+Effective Date: PENDING
+Last Updated: PENDING
+Owner: Weird Stuff
+
+============================================================
+
+1. PURPOSE
+   ============================================================
+
+This Policy establishes the rules governing requests for
+custom applications, software, tools, websites, games, utilities,
+automation, or other digital projects that may be developed by
+Weird Stuff for a requester.
+
+The purpose of this Policy is to establish a clear and consistent
+process for receiving, evaluating, accepting, developing,
+delivering, and supporting custom projects.
+
+============================================================
+2. SCOPE
+========
+
+This Policy applies to custom projects requested by individuals,
+communities, organizations, or other parties where Weird Stuff
+agrees to evaluate or develop the requested work.
+
+A custom application may include:
+
+* Desktop applications.
+* Web applications.
+* Mobile applications.
+* Games.
+* Utilities.
+* Automation tools.
+* Scripts.
+* Internal tools.
+* Digital services.
+* Other software projects.
+
+[PENDING]
+
+The exact categories of custom work offered by Weird Stuff may be
+defined separately.
+
+============================================================
+3. GENERAL PRINCIPLE
+====================
+
+[MANDATORY]
+
+Submitting a request does not create an automatic obligation for
+Weird Stuff to develop the requested project.
+
+[MANDATORY]
+
+Every request is subject to evaluation before acceptance.
+
+[MANDATORY]
+
+Weird Stuff may decline a request without being required to
+accept or develop it.
+
+============================================================
+4. REQUEST SUBMISSION
+=====================
+
+A request should contain enough information for Weird Stuff to
+understand the proposed project.
+
+Where applicable, a request should identify:
+
+* Project name.
+* General purpose.
+* Intended users.
+* Main features.
+* Required platform.
+* Technical requirements.
+* External integrations.
+* Desired deadline.
+* Relevant assets.
+* Special requirements.
+
+[RECOMMENDED]
+
+Requesters should provide complete and accurate information.
+
+============================================================
+5. REQUEST EVALUATION
+=====================
+
+Weird Stuff may evaluate requests based on:
+
+* Technical feasibility.
+* Available resources.
+* Project complexity.
+* Security risks.
+* Legal considerations.
+* Intellectual property considerations.
+* Compatibility with Weird Stuff systems.
+* Compatibility with existing projects.
+* Required maintenance.
+* Requested deadline.
+* Required infrastructure.
+
+[MANDATORY]
+
+A request must not be accepted if Weird Stuff determines that
+the requested work creates an unacceptable legal or security risk.
+
+============================================================
+6. GROUNDS FOR REFUSAL
+======================
+
+Weird Stuff may refuse a request for legitimate reasons,
+including:
+
+* Illegal purpose.
+* Security risk.
+* Malicious functionality.
+* Unauthorized access functionality.
+* Malware functionality.
+* Credential theft.
+* Fraud.
+* Abuse of third-party systems.
+* Excessive technical risk.
+* Insufficient resources.
+* Insufficient requirements.
+* Incompatible requirements.
+* Conflict with existing Weird Stuff projects.
+* Intellectual property concerns.
+* Unreasonable maintenance requirements.
+
+============================================================
+7. ACCEPTANCE
+=============
+
+Acceptance occurs only when Weird Stuff explicitly agrees to
+undertake the project through an authorized communication or
+process.
+
+[MANDATORY]
+
+A discussion, idea, suggestion, message, or preliminary estimate
+must not be interpreted as project acceptance unless Weird Stuff
+clearly indicates acceptance.
+
+[MANDATORY]
+
+An accepted project should have, at minimum:
+
+* Defined scope.
+* Main requirements.
+* Responsible person or team.
+* Expected deliverable.
+* Current status.
+
+============================================================
+8. PROJECT SCOPE
+================
+
+The scope of a custom project defines what Weird Stuff has agreed
+to develop.
+
+[MANDATORY]
+
+Features not included in the agreed scope are not automatically
+part of the project.
+
+[MANDATORY]
+
+Additional features may require a new evaluation.
+
+[RECOMMENDED]
+
+The agreed scope should be documented before substantial
+development begins.
+
+============================================================
+9. REQUIREMENTS
+===============
+
+[MANDATORY]
+
+Requirements must be sufficiently clear for the development team
+to implement and test the project.
+
+If a requirement is ambiguous or contradictory, Weird Stuff may
+request clarification before implementation.
+
+[MANDATORY]
+
+Weird Stuff may modify the technical implementation of a feature
+when necessary to achieve the intended result, provided that the
+agreed functionality is not materially changed without
+appropriate notice or agreement.
+
+============================================================
+10. DEVELOPMENT
+===============
+
+[MANDATORY]
+
+Custom applications must follow applicable Weird Stuff standards
+for:
+
+* Software development.
+* Security.
+* Testing.
+* Version control.
+* Intellectual property.
+* Release management.
+
+[MANDATORY]
+
+Developers must not intentionally introduce malicious or
+unauthorized functionality into a custom application.
+
+============================================================
+11. TESTING
+===========
+
+[MANDATORY]
+
+Custom applications must receive testing appropriate to their
+scope and risk before being considered ready for delivery.
+
+Testing may include:
+
+* Functional testing.
+* Regression testing.
+* Compatibility testing.
+* Performance testing.
+* Security testing.
+* User acceptance testing where applicable.
+
+[MANDATORY]
+
+Known critical defects must be considered before final delivery.
+
+============================================================
+12. DELIVERY
+============
+
+A project may be delivered through:
+
+* Executable software.
+* Source code.
+* Installation package.
+* Repository access.
+* Hosted service.
+* Digital files.
+* Other agreed delivery method.
+
+[PENDING]
+
+Specific delivery methods may vary by project.
+
+[MANDATORY]
+
+Weird Stuff must not represent a project as delivered when the
+agreed deliverable has not actually been provided.
+
+============================================================
+13. CHANGES AFTER DELIVERY
+==========================
+
+Changes requested after delivery may constitute:
+
+* Bug fixes.
+* Maintenance.
+* New features.
+* Scope changes.
+* New project work.
+
+[MANDATORY]
+
+Requests that materially change the agreed functionality may be
+subject to a new evaluation.
+
+============================================================
+14. SUPPORT AND MAINTENANCE
+===========================
+
+Custom applications do not automatically include permanent
+support or maintenance unless explicitly agreed.
+
+[MANDATORY]
+
+Weird Stuff must not promise ongoing support that has not been
+accepted.
+
+[RECOMMENDED]
+
+The project should identify whether maintenance is:
+
+* Included.
+* Optional.
+* Limited.
+* Not provided.
+
+============================================================
+15. AVAILABILITY
+================
+
+Where Weird Stuff hosts or operates a custom application:
+
+[MANDATORY]
+
+Weird Stuff must not promise continuous availability unless an
+appropriate service commitment has been established.
+
+[PENDING]
+
+Any hosting or availability commitments must be defined
+separately.
+
+============================================================
+16. INTELLECTUAL PROPERTY
+=========================
+
+Custom projects may involve intellectual property belonging to:
+
+* Weird Stuff.
+* The requester.
+* Third-party licensors.
+* Other contributors.
+
+[MANDATORY]
+
+Intellectual property ownership must not be assumed solely from
+the fact that Weird Stuff developed the software.
+
+[MANDATORY]
+
+Where ownership needs to be transferred, assigned, or licensed,
+the appropriate agreement must define the relevant rights.
+
+[PENDING]
+
+Standard intellectual property terms for custom projects.
+
+============================================================
+17. SOURCE CODE
+===============
+
+[PENDING]
+
+The source code ownership and delivery model must be determined
+for each custom project.
+
+Possible models may include:
+
+* Source code retained by Weird Stuff.
+* Source code delivered to the requester.
+* Shared rights.
+* Licensed access.
+* Other legally valid arrangement.
+
+============================================================
+18. THIRD-PARTY SOFTWARE
+========================
+
+[MANDATORY]
+
+Third-party software and assets used in a custom project must
+remain subject to their applicable licenses.
+
+[MANDATORY]
+
+Weird Stuff must not provide rights that it does not possess.
+
+[MANDATORY]
+
+Where a third-party license imposes conditions on redistribution,
+the project must comply with those conditions.
+
+============================================================
+19. USER-PROVIDED MATERIALS
+===========================
+
+A requester may provide:
+
+* Images.
+* Logos.
+* Text.
+* Code.
+* Audio.
+* Video.
+* Data.
+* Other assets.
+
+[MANDATORY]
+
+The requester must have the necessary rights or authorization to
+provide materials for the intended use.
+
+[MANDATORY]
+
+Weird Stuff may reject or request replacement of material where
+there is a reasonable intellectual property, privacy, security,
+or legal concern.
+
+============================================================
+20. PERSONAL DATA
+=================
+
+Custom applications may process personal data depending on their
+design.
+
+[MANDATORY]
+
+Personal data must not be collected or processed merely because
+it could technically be collected.
+
+[MANDATORY]
+
+Where Weird Stuff processes personal data for a custom project,
+the applicable privacy requirements must be identified.
+
+[PENDING]
+
+Specific controller / processor roles and contractual
+arrangements must be determined for each project where required.
+
+============================================================
+21. SECURITY REQUIREMENTS
+=========================
+
+[MANDATORY]
+
+Custom applications must not intentionally contain functionality
+designed to:
+
+* Steal credentials.
+* Obtain unauthorized access.
+* Circumvent security controls.
+* Deploy malware.
+* Destroy data maliciously.
+* Attack third-party systems.
+
+[MANDATORY]
+
+Security-sensitive functionality must be reviewed appropriately
+before delivery.
+
+============================================================
+22. DEADLINES
+=============
+
+Any requested deadline is subject to technical feasibility and
+available resources.
+
+[MANDATORY]
+
+A requested deadline must not be represented as a guaranteed
+delivery date unless Weird Stuff has expressly committed to it.
+
+[RECOMMENDED]
+
+Important projects should establish realistic milestones.
+
+============================================================
+23. PROJECT STATUS
+==================
+
+A custom application may have statuses such as:
+
+* Requested.
+* Under Review.
+* Accepted.
+* In Development.
+* Testing.
+* Ready for Delivery.
+* Delivered.
+* Maintenance.
+* Completed.
+* Rejected.
+* Cancelled.
+
+[MANDATORY]
+
+Project status must not knowingly be misrepresented.
+
+============================================================
+24. CANCELLATION
+================
+
+A project may be cancelled where:
+
+* The requester withdraws the request.
+* Requirements become impossible or unreasonable.
+* Security or legal risks emerge.
+* Resources become unavailable.
+* The project becomes incompatible with Weird Stuff's objectives.
+* Another legitimate reason makes continuation impractical.
+
+[MANDATORY]
+
+Where reasonably possible, significant cancellation decisions
+should be communicated to the requester.
+
+============================================================
+25. FREE CUSTOM APPLICATIONS
+============================
+
+Where Weird Stuff offers custom development free of charge:
+
+[MANDATORY]
+
+Free development does not guarantee acceptance of every request.
+
+[MANDATORY]
+
+Free development does not automatically include unlimited
+revisions, permanent maintenance, hosting, or future development.
+
+[PENDING]
+
+The definitive scope of the free custom application program must
+be established.
+
+============================================================
+26. WARRANTIES AND DISCLAIMERS
+==============================
+
+[PENDING]
+
+Any warranties, disclaimers, limitations, or service conditions
+for custom projects must be defined according to the actual
+project, legal framework, and applicable agreements.
+
+[MANDATORY]
+
+No provision may remove a legal right that cannot lawfully be
+excluded.
+
+============================================================
+27. CONFIDENTIALITY
+===================
+
+Where a requester provides confidential information:
+
+[MANDATORY]
+
+Weird Stuff must handle that information in accordance with any
+applicable confidentiality obligations.
+
+[MANDATORY]
+
+Project information must not be publicly disclosed when a valid
+confidentiality obligation prohibits such disclosure.
+
+============================================================
+28. PROJECT COMMUNICATION
+=========================
+
+[MANDATORY]
+
+Project-related decisions should be communicated through
+authorized channels.
+
+[RECOMMENDED]
+
+Important decisions should be documented so that the project
+history remains understandable.
+
+============================================================
+29. DELIVERY OF CREDENTIALS
+===========================
+
+If a custom project requires transferring credentials or access
+to a requester:
+
+[MANDATORY]
+
+Credentials must be transmitted using an appropriate secure
+method.
+
+[MANDATORY]
+
+Weird Stuff must not intentionally expose credentials publicly.
+
+[MANDATORY]
+
+Temporary credentials should be replaced or revoked when
+appropriate.
+
+============================================================
+30. PROJECT RETIREMENT
+======================
+
+A custom application may eventually become unsupported or
+retired.
+
+[MANDATORY]
+
+Where Weird Stuff operates the application, retirement must be
+handled in a controlled manner.
+
+[PENDING]
+
+Specific retirement and data handling requirements must be
+defined according to the project.
+
+============================================================
+31. DISPUTES AND ESCALATION
+===========================
+
+Questions or disputes concerning a custom project should first be
+addressed through the designated project contact.
+
+If unresolved, the matter may be escalated through the Weird Stuff
+organizational structure.
+
+General internal escalation:
+
+Responsible Person
+->
+Manager
+->
+Director
+->
+CEO
+
+============================================================
+32. RELATIONSHIP WITH OTHER POLICIES
+====================================
+
+This Policy complements:
+
+* Manual Corporativo.
+* Terms and Conditions.
+* Privacy Policy.
+* Cookie Policy.
+* Acceptable Use Policy.
+* Security Policy.
+* Intellectual Property Policy.
+
+[MANDATORY]
+
+Where a custom project is subject to a separate contract or
+agreement, that agreement governs the matters specifically
+addressed by it.
+
+============================================================
+33. POLICY UPDATES
+==================
+
+[MANDATORY]
+
+This Policy must be reviewed when:
+
+* The custom application program changes.
+* New types of projects are introduced.
+* Intellectual property arrangements change.
+* Security requirements change.
+* Applicable legal requirements change.
+
+The current version must be identifiable.
+
+============================================================
+34. CONTACT
+===========
+
+[PENDING]
+
+Custom application request channel:
+
+---
+
+Email:
+
+---
+
+Website:
+
+---
+
+Other official channel:
+
+---
+
+============================================================
+35. DOCUMENT CONTROL
+====================
+
+Document:
+WEIRD STUFF — CUSTOM APPLICATIONS POLICY
+
+Version:
+1.0
+
+Status:
+DRAFT FOR LEGAL REVIEW
+
+Publication:
+PENDING
+
+Effective Date:
+PENDING
+
+Last Updated:
+PENDING
+
+Owner:
+Weird Stuff
+
+============================================================
+END OF DOCUMENT
+===============

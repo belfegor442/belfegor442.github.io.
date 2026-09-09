@@ -1,0 +1,528 @@
+WEIRD STUFF
+TÉRMINOS Y CONDICIONES
+
+Version: 1.0
+Status: DRAFT FOR LEGAL REVIEW
+Publication Status: PENDING
+Effective Date: PENDING
+Owner: Weird Stuff
+
+============================================================
+
+1. INTRODUCTION
+   ============================================================
+
+These Terms and Conditions ("Terms") govern the access to and use
+of products, applications, websites, digital services, and other
+services made available by Weird Stuff ("Weird Stuff", "we", "us",
+or "our").
+
+By accessing or using a service covered by these Terms, the user
+("User", "you", or "your") acknowledges that they have read and
+accepted the applicable terms, subject to the legal requirements
+applicable to the User and to the service.
+
+[PENDING]
+The final legal identity, address, jurisdiction, and other
+mandatory provider information must be added before publication.
+
+============================================================
+2. SCOPE
+========
+
+These Terms apply to the services explicitly identified as being
+subject to them.
+
+A specific product, service, or feature may have additional terms,
+licenses, notices, or conditions.
+
+[MANDATORY]
+Where a specific product condition conflicts with these Terms,
+the specific condition will govern the relevant product or
+feature to the extent permitted by applicable law.
+
+[MANDATORY]
+No product-specific condition may eliminate a non-waivable legal
+right of a User.
+
+============================================================
+3. ACCEPTANCE
+=============
+
+[MANDATORY]
+The User must comply with these Terms when using a service covered
+by them.
+
+Depending on the service and applicable law, acceptance may occur
+through website access, account creation, installation, activation,
+or another clearly presented mechanism.
+
+[PENDING]
+The exact acceptance mechanism for each service must be defined
+before publication.
+
+============================================================
+4. ELIGIBILITY
+==============
+
+The use of a service may be subject to age, legal capacity, or
+other eligibility requirements.
+
+[MANDATORY]
+A User must not use a service where doing so would violate an
+applicable age restriction, legal requirement, or eligibility
+condition.
+
+[PENDING]
+Any minimum age requirements and rules for users who are minors
+must be defined according to the applicable service and law.
+
+============================================================
+5. ACCOUNTS
+===========
+
+Where a service requires an account:
+
+[MANDATORY]
+The User must provide information that is not knowingly false or
+misleading.
+
+[MANDATORY]
+The User is responsible for maintaining the security of their
+account credentials, except to the extent that applicable law
+provides otherwise.
+
+[MANDATORY]
+The User must promptly report suspected unauthorized access when
+reasonably able to do so.
+
+[MANDATORY]
+An account must not knowingly be used to impersonate another
+person or entity.
+
+[PENDING]
+Account creation, verification, recovery, deletion, and
+authentication requirements must be defined for each applicable
+service.
+
+============================================================
+6. USER CONDUCT
+===============
+
+[MANDATORY]
+Users must use Weird Stuff services lawfully and in accordance
+with these Terms and any applicable product-specific rules.
+
+[MANDATORY]
+Users must not intentionally:
+
+* Gain unauthorized access to systems, accounts, or data.
+* Circumvent security controls or access restrictions.
+* Distribute malware or malicious code.
+* Conduct fraud or deliberate deception.
+* Steal or attempt to steal credentials.
+* Interfere with the operation of services.
+* Abuse technical resources.
+* Impersonate Weird Stuff or another person or entity.
+* Infringe applicable intellectual property rights.
+* Use services for unlawful purposes.
+* Attempt to compromise another User's account or data.
+
+Additional prohibited activities may be established in the
+Acceptable Use Policy.
+
+============================================================
+7. SOFTWARE AND PRODUCT USE
+===========================
+
+Weird Stuff may provide software under these Terms, a separate
+license, or both.
+
+[MANDATORY]
+The User must comply with the applicable license conditions when
+using Weird Stuff software.
+
+[MANDATORY]
+The User must not knowingly remove or falsify copyright,
+trademark, licensing, attribution, or other rights notices where
+such removal is prohibited.
+
+[PENDING]
+The specific license applicable to each product must be identified
+before publication.
+
+============================================================
+8. UPDATES
+==========
+
+Weird Stuff may release updates, patches, fixes, new versions,
+security updates, or modifications.
+
+[MANDATORY]
+Users must not knowingly disable or circumvent security mechanisms
+used to protect legitimate updates or product integrity.
+
+[MANDATORY]
+Where an update materially changes the service, Weird Stuff must
+provide any notice required by applicable law.
+
+[RECOMMENDED]
+Important updates should be accompanied by clear release notes.
+
+============================================================
+9. AVAILABILITY
+===============
+
+Weird Stuff aims to maintain its services appropriately but does
+not represent that every service will always be uninterrupted,
+error-free, or permanently available unless expressly stated.
+
+[MANDATORY]
+Nothing in these Terms excludes or limits rights or guarantees
+that cannot legally be excluded or limited.
+
+[PENDING]
+Any formal availability commitments or service levels must be
+defined separately before publication.
+
+============================================================
+10. BETA, EXPERIMENTAL, AND DEVELOPMENT FEATURES
+================================================
+
+Some products or features may be provided in development, beta,
+preview, experimental, or testing states.
+
+[MANDATORY]
+Experimental features must not be knowingly represented as fully
+stable when their experimental status is relevant to the User.
+
+[RECOMMENDED]
+Experimental products should clearly identify their status and
+known limitations.
+
+============================================================
+11. CUSTOM APPLICATIONS
+=======================
+
+Weird Stuff may receive requests for custom software, applications,
+tools, or other digital projects.
+
+[MANDATORY]
+Submitting a request does not automatically create an obligation
+for Weird Stuff to develop the requested project.
+
+Weird Stuff may assess a request according to:
+
+* Technical feasibility.
+* Available resources.
+* Security considerations.
+* Legal considerations.
+* Project scope.
+* Compatibility with Weird Stuff policies.
+* Compatibility with existing projects.
+
+[MANDATORY]
+Weird Stuff may reject a request that creates an unacceptable
+legal, security, technical, or operational risk.
+
+[PENDING]
+Detailed custom application conditions are established in the
+Custom Applications Policy.
+
+============================================================
+12. USER CONTENT
+================
+
+Users may submit, upload, transmit, or otherwise provide content
+to a Weird Stuff service where such functionality is supported.
+
+[MANDATORY]
+Users must not knowingly submit content that they are prohibited
+from submitting under applicable law or the applicable service
+rules.
+
+[MANDATORY]
+Users must retain any rights they possess in their content,
+subject to any specific rights or licenses expressly granted to
+Weird Stuff.
+
+[PENDING]
+The exact license granted by Users to Weird Stuff, if any, must be
+defined for each service that accepts User content.
+
+============================================================
+13. INTELLECTUAL PROPERTY
+=========================
+
+Weird Stuff and its licensors may own rights in software, source
+code, designs, trademarks, logos, documentation, interfaces,
+visual assets, text, and other materials made available through
+its services.
+
+[MANDATORY]
+Except where expressly permitted, Users do not receive ownership
+of Weird Stuff intellectual property merely by accessing or using
+a service.
+
+[MANDATORY]
+Third-party intellectual property remains subject to its
+respective rights and licenses.
+
+Further provisions may be established in the Intellectual Property
+Policy.
+
+============================================================
+14. PRIVACY AND DATA PROTECTION
+===============================
+
+The processing of personal data is governed by the applicable
+Privacy Policy and applicable data protection law.
+
+[MANDATORY]
+Users should review the Privacy Policy applicable to the service
+before providing personal information.
+
+[MANDATORY]
+Nothing in these Terms removes rights that cannot legally be
+waived by a User.
+
+============================================================
+15. COOKIES AND SIMILAR TECHNOLOGIES
+====================================
+
+Where websites or services use cookies or similar technologies,
+their use may be governed by a separate Cookie Policy.
+
+[PENDING]
+The applicable Cookie Policy and consent mechanisms must be
+identified before publication where required.
+
+============================================================
+16. SUPPORT
+===========
+
+Weird Stuff may provide support through designated channels.
+
+[MANDATORY]
+Weird Stuff must only represent support availability and response
+levels that it has actually committed to provide.
+
+[PENDING]
+Official support channels and any applicable response commitments
+must be defined.
+
+============================================================
+17. THIRD-PARTY SERVICES
+========================
+
+Services may depend on or integrate with third-party software,
+platforms, hosting providers, communication systems, payment
+providers, or other external services.
+
+[MANDATORY]
+Third-party services remain subject to their own terms and
+policies where applicable.
+
+[MANDATORY]
+Weird Stuff must not knowingly represent a third-party service as
+being directly owned or controlled by Weird Stuff when that is not
+the case.
+
+============================================================
+18. SUSPENSION AND TERMINATION
+==============================
+
+Where legally and contractually permitted, Weird Stuff may
+restrict or terminate access to a service where there is a
+legitimate reason, including serious violations of these Terms,
+security threats, abuse, fraud, or technical necessity.
+
+[MANDATORY]
+Any suspension or termination must be carried out consistently
+with applicable law and any non-waivable User rights.
+
+[PENDING]
+Specific suspension and termination procedures must be defined
+for each service where necessary.
+
+============================================================
+19. SECURITY INCIDENTS
+======================
+
+If a User becomes aware of a security issue affecting a Weird
+Stuff service, the User should report it through an appropriate
+official channel.
+
+[MANDATORY]
+Users must not exploit a vulnerability beyond what is necessary
+to demonstrate or report the issue, where the applicable security
+reporting rules prohibit such activity.
+
+[PENDING]
+The official vulnerability reporting channel must be published.
+
+============================================================
+20. WARRANTIES AND DISCLAIMERS
+==============================
+
+Weird Stuff may provide products or services on an "as available"
+basis where legally permitted.
+
+[MANDATORY]
+Nothing in these Terms excludes mandatory legal guarantees,
+consumer rights, or other protections that cannot lawfully be
+excluded.
+
+[PENDING]
+Any product-specific warranty and disclaimer language must be
+reviewed before publication.
+
+============================================================
+21. LIABILITY
+=============
+
+[MANDATORY]
+Any limitation of liability must comply with applicable law.
+
+Weird Stuff does not intend these Terms to exclude liability that
+cannot legally be excluded or limited.
+
+[PENDING]
+Final liability provisions require jurisdiction-specific legal
+review before publication.
+
+============================================================
+22. CHANGES TO THESE TERMS
+==========================
+
+Weird Stuff may update these Terms when necessary.
+
+[MANDATORY]
+Material changes must be communicated using an appropriate
+mechanism when required by applicable law or contract.
+
+[MANDATORY]
+A new version must identify its effective date.
+
+[PENDING]
+The exact publication and notification mechanism must be defined.
+
+============================================================
+23. GOVERNING LAW
+=================
+
+[PENDING]
+The governing law must be defined based on the actual legal
+structure, jurisdiction, and applicable mandatory consumer
+protections.
+
+[PENDING]
+Any dispute-resolution mechanism must be legally reviewed before
+publication.
+
+============================================================
+24. SEVERABILITY
+================
+
+If a provision of these Terms is found to be invalid or
+unenforceable, the remaining provisions shall remain in effect
+to the extent legally permitted.
+
+[MANDATORY]
+This clause must not be interpreted as allowing Weird Stuff to
+remove or restrict mandatory legal protections.
+
+============================================================
+25. NO WAIVER
+=============
+
+Failure to enforce a provision immediately does not automatically
+constitute a permanent waiver of that provision, subject to
+applicable law.
+
+============================================================
+26. ENTIRE AGREEMENT
+====================
+
+Where legally applicable, these Terms together with the policies
+and documents expressly incorporated into them constitute the
+agreement governing the applicable service.
+
+Product-specific agreements may take precedence for matters
+specifically covered by those agreements.
+
+============================================================
+27. CONTACT
+===========
+
+Official contact information must be published with the final
+version of these Terms.
+
+[PENDING]
+
+Official email:
+
+---
+
+Official website:
+
+---
+
+Legal contact:
+
+---
+
+============================================================
+28. DOCUMENT CONTROL
+====================
+
+Document:
+WEIRD STUFF — TERMS AND CONDITIONS
+
+Version:
+1.0
+
+Status:
+DRAFT FOR LEGAL REVIEW
+
+Publication:
+PENDING
+
+Effective Date:
+PENDING
+
+Owner:
+Weird Stuff
+
+============================================================
+29. IMPORTANT LEGAL COMPLETION ITEMS
+====================================
+
+Before publication, the following must be completed:
+
+* Legal identity.
+* Provider identification.
+* Applicable jurisdiction.
+* Contact information.
+* User eligibility requirements.
+* Account rules, where applicable.
+* Product-specific licenses.
+* User-content license, where applicable.
+* Support conditions.
+* Commercial conditions, where applicable.
+* Refund and cancellation rules, where applicable.
+* Consumer-specific information, where applicable.
+* Privacy Policy reference.
+* Cookie Policy reference.
+* Acceptable Use Policy reference.
+* Intellectual Property Policy reference.
+* Custom Applications Policy reference.
+* Final limitation-of-liability wording.
+* Governing law.
+* Dispute-resolution mechanism.
+* Publication and acceptance mechanism.
+* Effective date.
+
+============================================================
+END OF DOCUMENT
+===============
